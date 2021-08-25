@@ -1,6 +1,8 @@
-# Webot
+# WeBot
 
-This is a telegram bot that helps you to publish your chats in the web. With the help of this bot you will be able to easily access your messages in your favorite web browser.
+This is a [Telegram](https://telegram.org/) bot that helps you to publish your chats in the web.
+
+With the help of this bot you will be able to easily access your messages in your favorite web browser.
 
 ## Development plan
 
