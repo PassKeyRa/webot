@@ -5,3 +5,10 @@ This is a telegram bot that helps you to publish your chats in the web. With the
 ## Development plan
 
 <https://docs.google.com/document/d/1SMETg42oXbHJIspYPbVgaMAqGvKnp5CD/edit>
+
+## Authors
+
+- German Vechtomov  
+- Alexey Posikera  
+- Bogdan Kondratev  
+- Dmitrii Chermnykh  
