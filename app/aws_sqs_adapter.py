@@ -1,11 +1,4 @@
-from json import loads
-from os import getenv
-from boto3.session import Session
-from dotenv import load_dotenv
-from secrets import token_hex
-import logging
-
-logger = logging.getLogger(__name__)
+from imports import *
 
 def loadEnv():
     try:
@@ -21,14 +14,13 @@ def loadEnv():
 
 def testAwsSqsAdapter():
     aws_access_key_id, aws_secret_access_key, region_name, _, _ = loadEnv()
-    incoming_sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+    test_sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
     queue_name = token_hex(8)
-    incoming_sqs.QueueCreate(queue_name)
-    incoming_sqs.QueueConnect(queue_name)
-    incoming_sqs.SendMessage('{"val":"1337"}')
-    assert int(next(incoming_sqs.ReceiveMessages())['val']) == 1337
-    incoming_sqs.QueueDelete()
- 
+    test_sqs.QueueCreate(queue_name)
+    test_sqs.QueueConnect(queue_name)
+    test_sqs.SendMessage('{"val":"1337"}')
+    assert int(next(test_sqs.ReceiveMessages())['val']) == 1337
+    test_sqs.QueueDelete()
 
 class AwsSqsAdapter:
 
