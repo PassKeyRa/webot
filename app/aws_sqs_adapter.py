@@ -1,4 +1,5 @@
 from imports import *
+import time
 
 def loadEnv():
     try:
@@ -13,13 +14,21 @@ def loadEnv():
         logger.exception("Some error occured: {}".format(e))
 
 def testAwsSqsAdapter():
+    number_of_msg = 20
     aws_access_key_id, aws_secret_access_key, region_name, _, _ = loadEnv()
     test_sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
     queue_name = token_hex(8)
     test_sqs.QueueCreate(queue_name)
     test_sqs.QueueConnect(queue_name)
-    test_sqs.SendMessage('{"val":"1337"}')
-    assert int(next(test_sqs.ReceiveMessages())['val']) == 1337
+    for i in range(number_of_msg):
+        test_sqs.SendMessage('{"'+str(i)+'":"'+str(i)+'"}')
+    msg = {}
+    while len(msg) != number_of_msg:
+        for x in test_sqs.ReceiveMessages():
+            msg.update(loads(x))
+    for x in msg.keys():
+        assert msg[x] == x
+    assert len(msg) == number_of_msg
     test_sqs.QueueDelete()
 
 class AwsSqsAdapter:
@@ -50,10 +59,10 @@ class AwsSqsAdapter:
             logger.exception("Some error occured: {}".format(e))
 
     def ReceiveMessages(self):
-        temp_queue = self.queue.receive_messages()
+        temp_queue = self.queue.receive_messages(MaxNumberOfMessages=10)
         try:
             for message in range(len(temp_queue)):
-                yield loads(temp_queue[message].body)
+                yield temp_queue[message].body
         except Exception as e:
             logger.exception("Some error occured: {}".format(e))
 
