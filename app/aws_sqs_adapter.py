@@ -2,18 +2,33 @@ from json import loads
 from os import getenv
 from boto3.session import Session
 from dotenv import load_dotenv
+from secrets import token_hex
 import logging
 
 logger = logging.getLogger(__name__)
 
 def loadEnv():
-    load_dotenv()
-    aws_access_key_id = getenv('AWS_ACCESS_KEY_ID')
-    aws_secret_access_key = getenv('AWS_SECRET_ACCESS_KEY')
-    region_name = getenv('REGION_NAME')
-    queue_name_in = getenv('QUEUE_NAME_IN')
-    queue_name_out = getenv('QUEUE_NAME_OUT')
-    return aws_access_key_id, aws_secret_access_key, region_name, queue_name_in, queue_name_out
+    try:
+        load_dotenv()
+        aws_access_key_id = getenv('AWS_ACCESS_KEY_ID')
+        aws_secret_access_key = getenv('AWS_SECRET_ACCESS_KEY')
+        region_name = getenv('REGION_NAME')
+        queue_name_in = getenv('QUEUE_NAME_IN')
+        queue_name_out = getenv('QUEUE_NAME_OUT')
+        return aws_access_key_id, aws_secret_access_key, region_name, queue_name_in, queue_name_out
+    except Exception as e:
+        logger.exception("Some error occured: {}".format(e))
+
+def testAwsSqsAdapter():
+    aws_access_key_id, aws_secret_access_key, region_name, _, _ = loadEnv()
+    incoming_sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+    queue_name = token_hex(8)
+    incoming_sqs.QueueCreate(queue_name)
+    incoming_sqs.QueueConnect(queue_name)
+    incoming_sqs.SendMessage('{"val":"1337"}')
+    assert int(next(incoming_sqs.ReceiveMessages())['val']) == 1337
+    incoming_sqs.QueueDelete()
+ 
 
 class AwsSqsAdapter:
 
@@ -23,7 +38,6 @@ class AwsSqsAdapter:
             self.sqs = self.session.resource('sqs')
         except Exception as e:
             logger.exception("Some error occured: {}".format(e))
-
 
     def QueueCreate(self, queue_name):
         try:
@@ -56,13 +70,3 @@ class AwsSqsAdapter:
             self.queue.delete()
         except Exception as e:
             logger.exception("Some error occured: {}".format(e))
-            
-if __name__ == "__main__":
-    aws_access_key_id, aws_secret_access_key, region_name, queue_name_in, queue_name_out = loadEnv()
-    incoming_sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
-    incoming_sqs.QueueCreate(queue_name_in)
-    incoming_sqs.QueueConnect(queue_name_in)
-    incoming_sqs.SendMessage('{"test":"1234"}')
-    for i in incoming_sqs.ReceiveMessages():
-        print(i)
-    incoming_sqs.QueueDelete()
