@@ -1,5 +1,4 @@
 from imports import *
-import time
 
 def loadEnv():
     try:
