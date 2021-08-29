@@ -13,10 +13,10 @@ def testAwsSqsAdapter():
     while len(msg) != number_of_msg:
         for x in test_sqs.ReceiveMessages():
             msg.update(loads(x))
+    test_sqs.QueueDelete()
     for x in msg.keys():
         assert msg[x] == x
     assert len(msg) == number_of_msg
-    test_sqs.QueueDelete()
 
 class AwsSqsAdapter:
 
