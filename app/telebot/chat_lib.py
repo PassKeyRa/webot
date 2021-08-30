@@ -12,6 +12,7 @@ def is_group_admin(update: Update):
 def chat_activate(update: Update, context: CallbackContext):
     if is_group_admin(update):
         chat = update.effective_chat
+        print(update.message.message_id)
         chat.send_message("Start chat updates listening and publishing")
         # start chat updates listening and publishing
         pass
@@ -20,6 +21,7 @@ def chat_activate(update: Update, context: CallbackContext):
 def chat_deactivate(update: Update, context: CallbackContext):
     if is_group_admin(update):
         chat = update.effective_chat
+        print(update.message.message_id)
         chat.send_message("Stop chat updates listening and publishing")
         # stop chat updates listening and publishing
         pass

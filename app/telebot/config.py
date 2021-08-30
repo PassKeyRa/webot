@@ -11,5 +11,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+api_id = os.environ['API_ID']
+api_hash = os.environ['API_HASH']
 bot_token = os.environ['BOT_TOKEN']
 bot_name = os.environ['BOT_NAME'] or 'WeBot'
