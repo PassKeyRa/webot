@@ -1,5 +1,5 @@
 from telegram import Chat, Update, ChatMember, ChatMemberUpdated
-from telegram.ext import Updater, CommandHandler, CallbackContext, ChatMemberHandler
+from telegram.ext import Updater, CommandHandler, CallbackContext, ChatMemberHandler, MessageHandler, Filters
 
 import os
 
@@ -11,7 +11,8 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-api_id = os.environ['API_ID']
-api_hash = os.environ['API_HASH']
-bot_token = os.environ['BOT_TOKEN']
-bot_name = os.environ['BOT_NAME'] or 'WeBot'
+api_id = os.environ.get('API_ID',  default=None)
+api_hash = os.environ.get('API_HASH',  default=None)
+bot_token = os.environ.get('BOT_TOKEN')
+bot_name = os.environ.get('BOT_NAME', default='WeBot')
+admin_password = os.environ.get('ADMIN_PASSWORD')
