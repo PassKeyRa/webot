@@ -2,6 +2,7 @@
 from telebot.config import *
 from telebot.chat_lib import *
 from telebot.trashchat_lib import TrashChat
+from telebot.db import DB
 
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -20,6 +21,9 @@ def stop(update: Update, context: CallbackContext) -> None:
 def main() -> None:
     updater = Updater(bot_token)
     dispatcher = updater.dispatcher
+    with DB() as db:
+        db.create_groups_table()
+        db.create_trash_chat_table()
     t_chat = TrashChat()
     dispatcher.add_handler(CommandHandler("start", start))
     # dispatcher.add_handler(CommandHandler("stop", stop))

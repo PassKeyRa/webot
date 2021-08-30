@@ -1,5 +1,6 @@
 from .config import *
 from .chat_lib import is_group_admin
+from .db import DB
 
 
 class TrashChat:
@@ -16,14 +17,22 @@ class TrashChat:
                 if cmd == 'activate':
                     logger.info('New trash chat activated')
                     # Activate trash chat
+
+                    with DB() as db:
+                        db.activate_chat(update.effective_chat.id, update.effective_user.id)
+
                     update.effective_chat.send_message('Activate: success')
                 elif cmd == 'deactivate':
                     logger.info('Trash chat deactivated')
                     # Deactivate trash chat
+
+                    with DB() as db:
+                        db.deactivate_chat(update.effective_chat.id, update.effective_user.id)
+
                     update.effective_chat.send_message('Deactivate: success')
             except IndexError as e:
                 logger.error('Command is not passed')
                 update.effective_chat.send_message('Pass a command as an argument')
-            except Exception as e:
-                logger.error('Some exception occurred: ' + str(e))
-                update.effective_chat.send_message('Error')
+            #except Exception as e:
+            #    logger.error('Some exception occurred: ' + str(e))
+            #    update.effective_chat.send_message('Error')

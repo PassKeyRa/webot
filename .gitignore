@@ -1,2 +1,3 @@
 /app/venv/
 .idea
+!/app/sqlite.db
