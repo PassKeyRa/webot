@@ -14,3 +14,11 @@ With the help of this bot you will be able to easily access your messages in you
 - Alexey Posikera  
 - Bogdan Kondratev  
 - Dmitrii Chermnykh  
+
+## Problem
+
+Many Telegram chats can be of great benefit to people.
+
+Therefore, many people want to export chats, and publish them - so that people can read and share knowledge in this way.
+
+For this we need a convenient tool that will not need additional actions on the part of the user.
