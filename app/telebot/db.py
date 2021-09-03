@@ -9,39 +9,36 @@ class DB:
     def close(self):
         self.cur.close()
 
-    def create_groups_table(self):
-        self.cur.execute("CREATE TABLE IF NOT EXISTS groups ("
+    def create_chats_table(self):
+        self.cur.execute("CREATE TABLE IF NOT EXISTS chats ("
                          "chat_id INTEGER PRIMARY KEY NOT NULL,"
                          "activated INTEGER,"
-                         "last_message_id INTEGER)")
+                         "changed_by INTEGER,"
+                         "last_message_processed INTEGER)")
 
-    def create_trash_chat_table(self):
-        self.cur.execute("CREATE TABLE IF NOT EXISTS trash_chat ("
-                         "chat_id INTEGER PRIMARY KEY NOT NULL,"
-                         "activated INTEGER,"
-                         "action_user_id INTEGER)")
+    def activate_chat(self, chat_id, changed_by):
+        try:
+            chat = list(self.cur.execute("SELECT * FROM chats WHERE chat_id=?", chat_id).fetchall()[0])
+            if chat:
+                self.cur.execute("UPDATE chats SET activated=1, changed_by=? WHERE chat_id=?", [changed_by, chat_id])
+            else:
+                self.cur.execute("INSERT INTO trash_chat VALUES (?, ?, ?, ?)", [chat_id, 1, changed_by, 0])
+            return True
+        except Exception as e:
+            print('Database processing error')
+            return False
 
-    def activate_chat(self, chat_id, changer_id):
-        count = list(self.cur.execute("SELECT COUNT(*) FROM trash_chat").fetchall()[0])[0]
-        if count == 0:
-            self.cur.execute("INSERT INTO trash_chat VALUES (?, ?, ?)", [chat_id, 1, changer_id])
-        else:
-            self.cur.execute("UPDATE trash_chat SET "
-                             "chat_id = ?,"
-                             "activated = ?,"
-                             "action_user_id = ? WHERE chat_id IN "
-                             "(SELECT chat_id FROM trash_chat ORDER BY chat_id LIMIT 1)", [chat_id, 1, changer_id])
-
-    def deactivate_chat(self, chat_id, changer_id):
-        count = list(self.cur.execute("SELECT COUNT(*) FROM trash_chat").fetchall()[0])[0]
-        if count == 0:
-            self.cur.execute("INSERT INTO trash_chat VALUES (?, ?, ?)", [chat_id, 0, changer_id])
-        else:
-            self.cur.execute("UPDATE trash_chat SET "
-                             "chat_id = ?,"
-                             "activated = ?,"
-                             "action_user_id = ? WHERE chat_id IN "
-                             "(SELECT chat_id FROM trash_chat ORDER BY chat_id LIMIT 1)", [chat_id, 0, changer_id])
+    def deactivate_chat(self, chat_id, changed_by):
+        try:
+            chat = list(self.cur.execute("SELECT * FROM chats WHERE chat_id=?", chat_id).fetchall()[0])
+            if chat:
+                self.cur.execute("UPDATE chats SET activated=0, changed_by=? WHERE chat_id=?", [changed_by, chat_id])
+            else:
+                self.cur.execute("INSERT INTO trash_chat VALUES (?, ?, ?, ?)", [chat_id, 0, changed_by, 0])
+            return True
+        except Exception as e:
+            print('Database processing error')
+            return False
 
     def __enter__(self):
         return self
