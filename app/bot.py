@@ -20,6 +20,8 @@ async def handle_messages(event):
         await chat_activate(client, chat, event.sender_id)
     elif re.fullmatch('/deactivate', text):
         await chat_deactivate(client, chat, event.sender_id)
+    else:
+        await process_message(client, chat, text, event.sender_id, event.id)
 
 
 @client.on(events.ChatAction)
