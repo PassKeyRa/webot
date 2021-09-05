@@ -39,6 +39,8 @@ class QueueHandler:
         sqs_out = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
         sqs_in.queueCreate('get_messages')
         sqs_out.queueCreate('send_link')
+        sqs_in.queueConnect('get_messages')
+        sqs_out.queueConnect('send_link')
         while True:
             try:
                 queue_request = QueueHandler.get_mes(sqs_in)
