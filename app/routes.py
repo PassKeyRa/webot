@@ -9,24 +9,23 @@ from utils import *
 
 class QueueHandler:
     @staticmethod
-    def get_mes(sqs, queue_name='get_messages'):
-        sqs.queueConnect(queue_name)
+    def get_mes(sqs):
         msg = sqs.receiveMessages()
         return next(msg)
 
     @staticmethod
-    def send_mes(mes, sqs, queue_name='send_link'):
-        pass
+    def send_mes(mes, sqs, ):
+        sqs.sendMessage(mes)
 
     @staticmethod
     def delete_queues():
         aws_access_key_id, aws_secret_access_key, region_name, _, _ = loadEnv()
-        sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
-        sqs.queueConnect('get_messages')
-        sqs.queueDelete()
-        sqs.queueConnect('send_link')
-        sqs.queueDelete()
-
+        sqs_in = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+        sqs_out = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+        sqs_in.queueConnect('get_messages')
+        sqs_out.queueConnect('send_link')
+        sqs_in.queueDelete()
+        sqs_out.queueDelete()
 
 
     @staticmethod
@@ -36,12 +35,13 @@ class QueueHandler:
     @staticmethod
     def queue_handler():
         aws_access_key_id, aws_secret_access_key, region_name, _, _ = loadEnv()
-        sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
-        sqs.queueCreate('get_messages')
-        sqs.queueCreate('send_link')
+        sqs_in = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+        sqs_out = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+        sqs_in.queueCreate('get_messages')
+        sqs_out.queueCreate('send_link')
         while True:
             try:
-                queue_request = QueueHandler.get_mes(sqs)
+                queue_request = QueueHandler.get_mes(sqs_in)
                 request = json.loads(queue_request)
                 if request['type'] == 'new_chat':
                     new_token = QueueHandler.token_generator()
@@ -50,7 +50,7 @@ class QueueHandler:
                                                'messages': []})
                     QueueHandler.send_mes(json.dumps({'Status': 'OK',
                                          'url': f'/show_chat/{new_token}',
-                                         'token': new_token}), sqs)
+                                         'token': new_token}), sqs_out)
 
                 elif request['type'] == 'add_messages':
                     for mes in request['messages']:
