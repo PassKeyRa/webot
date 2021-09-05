@@ -25,25 +25,25 @@ class AwsSqsAdapter:
             self.session = Session(aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key, region_name=region_name)
             self.sqs = self.session.resource('sqs')
         except Exception as e:
-            logger.exception("Some error occured: {}".format(e))
+            logger.exception("Error occured when creating AWS queue object: {}".format(e))
 
     def queueCreate(self, queue_name):
         try:
             self.queue = self.sqs.create_queue(QueueName=queue_name)
         except Exception as e:
-            logger.exception("Some error occured: {}".format(e))
+            logger.exception("Error occured when creating AWS queue: {}".format(e))
 
     def queueConnect(self, queue_name):
         try:
             self.queue = self.sqs.get_queue_by_name(QueueName=queue_name)
         except Exception as e:
-            logger.exception("Some error occured: {}".format(e))
+            logger.exception("Error occured when connecting to AWS queue: {}".format(e))
 
     def sendMessage(self, message):
         try:
             self.queue.send_message(MessageBody=message)
         except Exception as e:
-            logger.exception("Some error occured: {}".format(e))
+            logger.exception("Error occured when sending message in the AWS queue: {}".format(e))
 
     def receiveMessages(self):
         temp_queue = self.queue.receive_messages(MaxNumberOfMessages=1)
@@ -51,10 +51,10 @@ class AwsSqsAdapter:
             for message in range(len(temp_queue)):
                 yield temp_queue[message].body
         except Exception as e:
-            logger.exception("Some error occured: {}".format(e))
+            logger.exception("Error occured when receiving message from the AWS queue: {}".format(e))
 
     def queueDelete(self):
         try:
             self.queue.delete()
         except Exception as e:
-            logger.exception("Some error occured: {}".format(e))
+            logger.exception("Error occured when deleting AWS queue: {}".format(e))
