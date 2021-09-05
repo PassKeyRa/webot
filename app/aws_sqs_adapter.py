@@ -1,4 +1,4 @@
-from utils import *
+from app.utils import *
 
 def testAwsSqsAdapter():
     number_of_msg = 20

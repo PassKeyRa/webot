@@ -1,4 +1,4 @@
-from imports import *
+from app.imports import *
 
 def loadEnv():
     try:

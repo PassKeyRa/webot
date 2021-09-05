@@ -4,14 +4,19 @@ from flask import render_template
 from flask.views import View
 import json, random, string
 from app.aws_sqs_adapter import AwsSqsAdapter
-from utils import *
+from app.utils import *
 
 
 class QueueHandler:
     @staticmethod
     def get_mes(sqs):
-        msg = sqs.receiveMessages()
-        return next(msg)
+        while True:
+            try:
+                msg = next(sqs.receiveMessages())
+            except:
+                continue
+            break
+        return msg
 
     @staticmethod
     def send_mes(mes, sqs, ):
@@ -63,7 +68,7 @@ class QueueHandler:
                     mongo.db.chats.delete_one({'chat_token': request['chat_token']})
 
             except Exception as e:
-                # print(f'[!] Some error: {e}')
+                print(f'[!] Some error: {e}')
                 continue
 
 
