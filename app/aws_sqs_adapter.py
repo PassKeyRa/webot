@@ -46,7 +46,7 @@ class AwsSqsAdapter:
             logger.exception("Some error occured: {}".format(e))
 
     def receiveMessages(self):
-        temp_queue = self.queue.receive_messages(MaxNumberOfMessages=10)
+        temp_queue = self.queue.receive_messages(MaxNumberOfMessages=1)
         try:
             for message in range(len(temp_queue)):
                 yield temp_queue[message].body
