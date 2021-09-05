@@ -7,6 +7,7 @@ DB_ERROR = 2
 DB_CHAT_ACTIVATED = 3
 DB_CHAT_DEACTIVATED = 4
 DB_CHAT_DOESNT_EXIST = 5
+DB_CHAT_REWRITE_TOKEN = 6
 
 
 class DB:
@@ -31,7 +32,7 @@ class DB:
         :return: DB_NEW_CHAT if chat doesn't exist, DB_SUCCESS if exists, DB_ERROR if error
         """
         try:
-            chat = list(self.cur.execute("SELECT * FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])
+            list(self.cur.execute("SELECT * FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])
             self.cur.execute("UPDATE chats SET activated=1, changed_by=? WHERE chat_id=?", [changed_by, chat_id])
             return DB_SUCCESS
         except IndexError:
@@ -48,7 +49,7 @@ class DB:
         :return: DB_NEW_CHAT if chat doesn't exist, DB_SUCCESS if exists, DB_ERROR if error
         """
         try:
-            chat = list(self.cur.execute("SELECT * FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])
+            list(self.cur.execute("SELECT * FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])
             self.cur.execute("UPDATE chats SET activated=0, changed_by=? WHERE chat_id=?", [changed_by, chat_id])
             return DB_SUCCESS
         except IndexError:
@@ -84,6 +85,25 @@ class DB:
         except Exception as e:
             print('[get_chat_token] Database processing error')
             return DB_ERROR
+
+    def set_chat_token(self, chat_id, token):
+        """
+        :param chat_id: chat_id: id of the chat
+        :return: DB_SUCCESS/DB_CHAT_REWRITE_TOKEN/DB_CHAT_DOESNT_EXIST/DB_ERROR
+        """
+        try:
+            token = list(self.cur.execute("SELECT token FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])[0]
+            if token == '-':
+                self.cur.execute("UPDATE chats SET token=? WHERE chat_id=?", [token, chat_id])
+                return DB_SUCCESS
+            self.cur.execute("UPDATE chats SET token=? WHERE chat_id=?", [token, chat_id])
+            return DB_CHAT_REWRITE_TOKEN
+        except IndexError:
+            return DB_CHAT_DOESNT_EXIST
+        except Exception as e:
+            print('[set_chat_token] Database processing error')
+            return DB_ERROR
+
 
     def __enter__(self):
         return self

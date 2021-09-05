@@ -1,6 +1,8 @@
 from .config import *
 from .db import *
-from .messages_processing import MessagesProcessing
+from .messages_processing import ChatMessagesProcessing
+
+import random, string
 
 
 async def is_group_admin(client, chat, user_id):
@@ -23,9 +25,11 @@ async def chat_activate(client, chat, user_id):
                 # send the link to the chat
             elif status == DB_NEW_CHAT:
                 # get token
+                token = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(32))  # temporary
+                db.set_chat_token(chat.id, token)
                 await client.send_message(chat, "Fetching previous messages")
-                mep = MessagesProcessing(db.get_chat_token(chat.id))
-                await mep.send_messages(client, chat, 100)
+                mep = ChatMessagesProcessing(token)
+                await mep.send_all_chat_messages(client, chat, 100)
                 await client.send_message(chat, "Start chat updates listening and publishing")
                 # send the link to the chat
             elif status == DB_ERROR:
@@ -47,7 +51,7 @@ async def chat_deactivate(client, chat, user_id):
                 await client.send_message(chat, "Server error")
 
 
-async def process_message(client, chat, message_text, message_sender, message_id):
+async def process_message(client, chat, message):
     if not is_group(chat):
         await not_a_group(client, chat)
         return
@@ -55,10 +59,9 @@ async def process_message(client, chat, message_text, message_sender, message_id
         status = db.chat_activation_status(chat.id)
         if status == DB_CHAT_ACTIVATED:
             token = db.get_chat_token(chat.id)
-            if token not in [DB_CHAT_DOESNT_EXIST, DB_CHAT_DEACTIVATED, DB_ERROR]:
-                # send the message using the token
-                mep = MessagesProcessing(db.get_chat_token(chat.id))
-                await mep.send_message(message_text, message_sender, message_id)
+            # send the message using the token
+            mep = ChatMessagesProcessing(token)
+            await mep.send_message(message)
 
 
 async def start(client, chat, user_id) -> None:

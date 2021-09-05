@@ -1,5 +1,3 @@
-"""from telegram import Chat, Update, ChatMember, ChatMemberUpdated, Message
-from telegram.ext import Updater, CommandHandler, CallbackContext, ChatMemberHandler, MessageHandler, Filters"""
 from telethon import TelegramClient, events
 from telethon.tl.types import User, Chat, Channel, ChannelParticipantsAdmins, ChatParticipantAdmin, ChatParticipantCreator
 from telethon.tl.custom.participantpermissions import ParticipantPermissions

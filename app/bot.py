@@ -12,6 +12,7 @@ async def handle_messages(event):
     logger.info("[MESSAGE] chat_id=%s message_id=%s text=%s", event.chat_id, event.id, event.raw_text)
     text = event.raw_text
     chat = await event.get_chat()
+    sender = await event.get_sender()
     if re.fullmatch('/start', text):
         await start(client, chat, event.sender_id)
     elif re.fullmatch('/stop', text):
@@ -21,7 +22,7 @@ async def handle_messages(event):
     elif re.fullmatch('/deactivate', text):
         await chat_deactivate(client, chat, event.sender_id)
     else:
-        await process_message(client, chat, text, event.sender_id, event.id)
+        await process_message(client, chat, event.message)
 
 
 @client.on(events.ChatAction)
@@ -35,7 +36,7 @@ async def handler(event):
         me = await client.get_me()
         if me.id == event.user_id:
             chat = await event.get_chat()
-            logger.info("Removed from group %s", chat.id)
+            logger.info("Removed from the chat %s", chat.id)
 
 
 client.start()
