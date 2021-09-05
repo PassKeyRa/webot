@@ -39,6 +39,7 @@ class DB:
             self.cur.execute("INSERT INTO chats VALUES (?, ?, ?, ?)", [chat_id, 1, changed_by, '-'])
             return DB_NEW_CHAT
         except Exception as e:
+            print(e)
             print('[activate_chat] Database processing error')
             return DB_ERROR
 
@@ -46,15 +47,17 @@ class DB:
         """
         :param chat_id: id of the chat
         :param changed_by: id of the user that changed the state
-        :return: DB_NEW_CHAT if chat doesn't exist, DB_SUCCESS if exists, DB_ERROR if error
+        :return: DB_CHAT_DOESNT_EXIST if chat doesn't exist, DB_SUCCESS if exists, DB_ERROR if error,
+        DB_CHAT_DEACTIVATED if the chat is already deactivated
         """
         try:
-            list(self.cur.execute("SELECT * FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])
-            self.cur.execute("UPDATE chats SET activated=0, changed_by=? WHERE chat_id=?", [changed_by, chat_id])
-            return DB_SUCCESS
+            act = list(self.cur.execute("SELECT activated FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])[0]
+            if act == 1:
+                self.cur.execute("UPDATE chats SET activated=0, changed_by=? WHERE chat_id=?", [changed_by, chat_id])
+                return DB_SUCCESS
+            return DB_CHAT_DEACTIVATED
         except IndexError:
-            self.cur.execute("INSERT INTO chats VALUES (?, ?, ?, ?)", [chat_id, 0, changed_by, '-'])
-            return DB_NEW_CHAT
+            return DB_CHAT_DOESNT_EXIST
         except Exception as e:
             print('[deactivate_chat] Database processing error')
             return DB_ERROR
@@ -92,8 +95,8 @@ class DB:
         :return: DB_SUCCESS/DB_CHAT_REWRITE_TOKEN/DB_CHAT_DOESNT_EXIST/DB_ERROR
         """
         try:
-            token = list(self.cur.execute("SELECT token FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])[0]
-            if token == '-':
+            _token = list(self.cur.execute("SELECT token FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])[0]
+            if _token == '-':
                 self.cur.execute("UPDATE chats SET token=? WHERE chat_id=?", [token, chat_id])
                 return DB_SUCCESS
             self.cur.execute("UPDATE chats SET token=? WHERE chat_id=?", [token, chat_id])

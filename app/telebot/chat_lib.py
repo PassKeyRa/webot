@@ -1,8 +1,9 @@
+import random
+import string
+
+from .chat_messages_processing import ChatMessagesProcessing
 from .config import *
 from .db import *
-from .messages_processing import ChatMessagesProcessing
-
-import random, string
 
 
 async def is_group_admin(client, chat, user_id):
@@ -22,16 +23,23 @@ async def chat_activate(client, chat, user_id):
             if status == DB_SUCCESS:
                 token = db.get_chat_token(chat.id)
                 await client.send_message(chat, "Start chat updates listening and publishing")
-                # send the link to the chat
+
+                # Here should be link getting and sending to the chat
+
             elif status == DB_NEW_CHAT:
-                # get token
+
+                # Here should be token getting
                 token = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(32))  # temporary
+
                 db.set_chat_token(chat.id, token)
+                print(db.get_chat_token(chat.id))
                 await client.send_message(chat, "Fetching previous messages")
                 mep = ChatMessagesProcessing(token)
                 await mep.send_all_chat_messages(client, chat, 100)
                 await client.send_message(chat, "Start chat updates listening and publishing")
-                # send the link to the chat
+
+                # Here should be link getting and sending to the chat
+
             elif status == DB_ERROR:
                 await client.send_message(chat, "Server error")
 
@@ -45,10 +53,12 @@ async def chat_deactivate(client, chat, user_id):
             status = db.deactivate_chat(chat.id, user_id)
             if status == DB_SUCCESS:
                 await client.send_message(chat, "Stop chat updates listening and publishing")
-            elif status == DB_NEW_CHAT:
-                await client.send_message(chat, "Chat isn't activated")
+            elif status == DB_CHAT_DOESNT_EXIST:
+                await client.send_message(chat, "Chat has not ever been activated")
             elif status == DB_ERROR:
                 await client.send_message(chat, "Server error")
+            elif status == DB_CHAT_DEACTIVATED:
+                await client.send_message(chat, "Chat has already been deactivated")
 
 
 async def process_message(client, chat, message):
@@ -59,7 +69,6 @@ async def process_message(client, chat, message):
         status = db.chat_activation_status(chat.id)
         if status == DB_CHAT_ACTIVATED:
             token = db.get_chat_token(chat.id)
-            # send the message using the token
             mep = ChatMessagesProcessing(token)
             await mep.send_message(message)
 

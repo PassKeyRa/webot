@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 from telebot.config import *
 from telebot.chat_lib import *
+from telebot.db import DB
 
 import re
 
 client = TelegramClient('webot', api_id, api_hash)
+with DB() as db:
+    db.create_chats_table()
 
 
 @client.on(events.NewMessage)
@@ -17,6 +20,8 @@ async def handle_messages(event):
         await start(client, chat, event.sender_id)
     elif re.fullmatch('/stop', text):
         stop(chat)
+    elif re.fullmatch('/help', text):
+        await client.send_message(chat, "Will be soon")
     elif re.fullmatch('/activate', text):
         await chat_activate(client, chat, event.sender_id)
     elif re.fullmatch('/deactivate', text):
