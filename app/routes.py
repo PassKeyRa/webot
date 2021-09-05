@@ -19,6 +19,17 @@ class QueueHandler:
         pass
 
     @staticmethod
+    def delete_queues():
+        aws_access_key_id, aws_secret_access_key, region_name, _, _ = loadEnv()
+        sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+        sqs.queueConnect('get_messages')
+        sqs.queueDelete()
+        sqs.queueConnect('send_link')
+        sqs.queueDelete()
+
+
+
+    @staticmethod
     def token_generator(size=32, chars=string.ascii_lowercase + string.digits):
         return ''.join(random.choice(chars) for _ in range(size))
 
