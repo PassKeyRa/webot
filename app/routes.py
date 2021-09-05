@@ -3,23 +3,19 @@ from app import mongo
 from flask import render_template
 from flask.views import View
 import json, random, string
-test = 1
+from app.aws_sqs_adapter import AwsSqsAdapter
+from utils import *
 
 
 class QueueHandler:
     @staticmethod
-    def get_mes():
-        global test
-        if test == 0:
-            return '{}'
-        else:
-            test -= 1
-            # return json.dumps({'type': 'new_chat', 'chat_name': 'test_test'})
-            return json.dumps({'type': 'add_messages', 'chat_token': '036wutcvu1hsn38jqzc8x4s327yec6pi', 'messages': [{'text': 'asdasdasd asdas asd', 'timestamp': '3232131321', 'sender_name': 'Test Testovich'}, {'text': 'dsopqw[e opqwoepoc oopeowefpm', 'timestamp': '23135438','sender_name': 'ASd Asdovich'}]})
-            # return json.dumps({'type': 'delete_chat', 'chat_token': '8d18xinsr5r48diw9ms6f652htb9c9ef'})
+    def get_mes(sqs, queue_name='get_messages'):
+        sqs.queueConnect(queue_name)
+        msg = sqs.receiveMessages()
+        return next(msg)
 
     @staticmethod
-    def send_mes(mes):
+    def send_mes(mes, sqs, queue_name='send_link'):
         pass
 
     @staticmethod
@@ -28,9 +24,13 @@ class QueueHandler:
 
     @staticmethod
     def queue_handler():
+        aws_access_key_id, aws_secret_access_key, region_name, _, _ = loadEnv()
+        sqs = AwsSqsAdapter(aws_access_key_id, aws_secret_access_key, region_name)
+        sqs.queueCreate('get_messages')
+        sqs.queueCreate('send_link')
         while True:
             try:
-                queue_request = QueueHandler.get_mes()
+                queue_request = QueueHandler.get_mes(sqs)
                 request = json.loads(queue_request)
                 if request['type'] == 'new_chat':
                     new_token = QueueHandler.token_generator()
@@ -39,7 +39,7 @@ class QueueHandler:
                                                'messages': []})
                     QueueHandler.send_mes(json.dumps({'Status': 'OK',
                                          'url': f'/show_chat/{new_token}',
-                                         'token': new_token}))
+                                         'token': new_token}), sqs)
 
                 elif request['type'] == 'add_messages':
                     for mes in request['messages']:
