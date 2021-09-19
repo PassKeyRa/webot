@@ -2,3 +2,4 @@ Flask~=2.0.1
 boto3~=1.18.36
 python-dotenv~=0.19.0
 Telethon~=1.23.0
+Flask-PyMongo~=2.3.0
