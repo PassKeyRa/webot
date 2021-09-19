@@ -44,6 +44,7 @@ class AwsSqsAdapter:
             message_list = self.queue.receive_message()
             message_body = message_list[0].body
             self.queue.delete_message(message_list[0])
+            return message_body
         except Exception as e:
             logger.exception("Error occured when receiving message from the AWS queue: {}".format(e))
     def queueDelete(self):
