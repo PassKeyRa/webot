@@ -2,7 +2,7 @@ name: Deploy our project using SSH to AWS Server
 on: [push]
 jobs:
   kill:
-    name: Kill
+    name: WeBot Deploy
     runs-on: ubuntu-latest
     steps:
     - name: Kill previous running version
