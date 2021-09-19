@@ -10,5 +10,5 @@ if __name__ == '__main__':
         queue_thread.start()
 
         app.run(debug=True)
-   except KeyboardInterrupt:
+    except KeyboardInterrupt:
         os._exit(0)
