@@ -12,7 +12,7 @@ queue = QueueHandler()
 
 async def is_group_admin(client, chat, user_id):
     async for user in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
-        if type(user.participant) in [ChatParticipantAdmin, ChatParticipantCreator] and user.id == user_id:
+        if type(user.participant) in [ChatParticipantAdmin, ChatParticipantCreator, ChannelParticipantCreator, ChannelParticipantAdmin] and user.id == user_id:
             return True
     return False
 
@@ -44,7 +44,6 @@ async def chat_activate(client, chat, user_id):
                 mep.set_token(token)
                 await mep.send_all_chat_messages(client, chat, 20)
                 await client.send_message(chat, "Start chat updates listening and publishing")
-                print(url)
                 await client.send_message(chat, "Here you can find your chat: " + url)
 
             elif status == DB_ERROR:
@@ -95,7 +94,7 @@ def stop(chat) -> None:
 
 
 def is_group(chat):
-    if type(chat) != Chat:
+    if type(chat) != Chat and type(chat) != Channel:
         return False
     return True
 

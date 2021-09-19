@@ -1,5 +1,5 @@
 from telethon import TelegramClient, events
-from telethon.tl.types import User, Chat, Channel, ChannelParticipantsAdmins, ChatParticipantAdmin, ChatParticipantCreator
+from telethon.tl.types import User, Chat, Channel, ChannelParticipantsAdmins, ChatParticipantAdmin, ChatParticipantCreator, ChannelParticipantCreator, ChannelParticipantAdmin
 from telethon.tl.custom.participantpermissions import ParticipantPermissions
 from telethon.tl.functions.channels import GetParticipantsRequest
 from dotenv import load_dotenv

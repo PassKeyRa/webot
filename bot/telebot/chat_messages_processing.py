@@ -10,8 +10,13 @@ class ChatMessagesProcessing:
         if not self.token:
             return False
         messages = []
+        counter = 0
         async for message in client.iter_messages(chat, reverse=True):
+            if counter >= 20000:
+                break # max number of messages
             sender = await message.get_sender()
+            if not sender:
+                continue
             sender_name = ' '.join([i for i in [sender.first_name, sender.last_name] if i])
             messages.append({'message_id': message.id, 'message_sender': sender_name, 'message_text': message.message})
             if len(messages) == buffer_size:
@@ -22,6 +27,8 @@ class ChatMessagesProcessing:
                 self.queue.send(data)
 
                 messages = []
+
+            counter += 1
 
         if messages:
             data = json.dumps({'type': 'add_messages', 'chat_token': self.token, 'messages': messages})
