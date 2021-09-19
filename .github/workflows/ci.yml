@@ -1,0 +1,26 @@
+name: Deploy our project using SSH to AWS Server
+on: [push]
+jobs:
+  kill:
+    name: Kill
+    runs-on: ubuntu-latest
+    steps:
+    - name: Kill previous running version
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: kill -9 `pgrep python3`
+    - name: Set up new version
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}  
+        port: ${{ secrets.PORT }}
+        script: |
+          cd ~/webot
+          git pull
+          nohup python3 webot_api.py >/dev/null 2>&1
