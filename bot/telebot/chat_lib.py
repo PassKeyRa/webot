@@ -4,6 +4,10 @@ import string
 from .chat_messages_processing import ChatMessagesProcessing
 from .config import *
 from .db import *
+from .queue import QueueHandler
+
+
+queue = QueueHandler()
 
 
 async def is_group_admin(client, chat, user_id):
@@ -21,24 +25,26 @@ async def chat_activate(client, chat, user_id):
         with DB() as db:
             status = db.activate_chat(chat.id, user_id)
             if status == DB_SUCCESS:
-                token = db.get_chat_token(chat.id)
                 await client.send_message(chat, "Start chat updates listening and publishing")
 
-                # Here should be link getting and sending to the chat
+                url = db.get_chat_url(chat.id)
+                await client.send_message(chat, "Here you can find your chat: " + url)
 
             elif status == DB_NEW_CHAT:
 
                 # Here should be token getting
-                token = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(32))  # temporary
+                # token = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(32))  # temporary
+                mep = ChatMessagesProcessing(queue)
+                url, token = mep.send_new_chat(chat)
 
                 db.set_chat_token(chat.id, token)
-                print(db.get_chat_token(chat.id))
-                await client.send_message(chat, "Fetching previous messages")
-                mep = ChatMessagesProcessing(token)
-                await mep.send_all_chat_messages(client, chat, 100)
-                await client.send_message(chat, "Start chat updates listening and publishing")
+                db.set_chat_url(chat.id, url)
 
-                # Here should be link getting and sending to the chat
+                await client.send_message(chat, "Fetching previous messages")
+                mep.set_token(token)
+                await mep.send_all_chat_messages(client, chat, 20)
+                await client.send_message(chat, "Start chat updates listening and publishing")
+                await client.send_message(chat, "Here you can find your chat: " + url)
 
             elif status == DB_ERROR:
                 await client.send_message(chat, "Server error")
@@ -69,7 +75,7 @@ async def process_message(client, chat, message):
         status = db.chat_activation_status(chat.id)
         if status == DB_CHAT_ACTIVATED:
             token = db.get_chat_token(chat.id)
-            mep = ChatMessagesProcessing(token)
+            mep = ChatMessagesProcessing(queue, token=token)
             await mep.send_message(message)
 
 

@@ -1,6 +1,6 @@
 /app/venv/
 .idea
-/app/sqlite.db
+/bot/sqlite.db
 .env
 .pytest_cache
 __pycache__

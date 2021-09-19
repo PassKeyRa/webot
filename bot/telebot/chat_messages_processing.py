@@ -1,19 +1,14 @@
 import json
 
 
-async def send_new_chat(chat):
-    data = json.dumps({'type': 'new_chat', 'chat_name': chat.title})
-
-    # temporary
-    print('Send new_chat', data)
-    # here should be new_chat to queue sending
-
-
 class ChatMessagesProcessing:
-    def __init__(self, token):
+    def __init__(self, queue, token=None):
         self.token = token
+        self.queue = queue
 
     async def send_all_chat_messages(self, client, chat, buffer_size):
+        if not self.token:
+            return False
         messages = []
         async for message in client.iter_messages(chat, reverse=True):
             sender = await message.get_sender()
@@ -24,11 +19,14 @@ class ChatMessagesProcessing:
 
                 # temporary
                 print('Send messages', data)
-                # here should be messages to queue sending
+                self.queue.send(data)
 
                 messages = []
+        return True
 
     async def send_message(self, m):
+        if not self.token:
+            return False
         sender = await m.get_sender()
         message_id = m.id
         sender_name = ' '.join([i for i in [sender.first_name, sender.last_name] if i])
@@ -38,4 +36,18 @@ class ChatMessagesProcessing:
 
         # temporary
         print('Send messages', data)
-        # here should be messages to queue sending
+        self.queue.send(data)
+
+        return True
+
+    def send_new_chat(self, chat):
+        data = json.dumps({'type': 'new_chat', 'chat_name': chat.title})
+
+        # temporary
+        print('Send new_chat', data)
+        answer = json.loads(self.queue.send_and_receive(data))
+        print(answer)
+        return answer['url'], answer['token']
+
+    def set_token(self, token):
+        self.token = token
