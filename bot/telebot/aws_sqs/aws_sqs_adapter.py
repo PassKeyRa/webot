@@ -11,8 +11,7 @@ def testAwsSqsAdapter():
         test_sqs.sendMessage('{"'+str(i)+'":"'+str(i)+'"}')
     msg = {}
     while len(msg) != number_of_msg:
-        for x in test_sqs.receiveMessages():
-            msg.update(loads(x))
+        msg.update(loads(test_sqs.receiveMessages()))
     test_sqs.queueDelete()
     for x in msg.keys():
         assert msg[x] == x
@@ -41,10 +40,10 @@ class AwsSqsAdapter:
         except Exception as e:
             logger.exception("Error occured when sending message in the AWS queue: {}".format(e))
     def receiveMessages(self):
-        temp_queue = self.queue.receive_messages(MaxNumberOfMessages=1)
         try:
-            for message in range(len(temp_queue)):
-                yield temp_queue[message].body
+            message_list = self.queue.receive_message()
+            message_body = message_list[0].body
+            self.queue.delete_message(message_list[0])
         except Exception as e:
             logger.exception("Error occured when receiving message from the AWS queue: {}".format(e))
     def queueDelete(self):
