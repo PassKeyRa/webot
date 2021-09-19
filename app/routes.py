@@ -11,12 +11,10 @@ class QueueHandler:
     @staticmethod
     def get_mes(sqs):
         while True:
-            try:
-                msg = next(sqs.receiveMessages())
-            except:
+            msg = sqs.receiveMessages()
+            if msg is None:
                 continue
-            break
-        return msg
+            return msg
 
     @staticmethod
     def send_mes(mes, sqs, ):
@@ -31,7 +29,6 @@ class QueueHandler:
         sqs_out.queueConnect('send_link')
         sqs_in.queueDelete()
         sqs_out.queueDelete()
-
 
     @staticmethod
     def token_generator(size=32, chars=string.ascii_lowercase + string.digits):
