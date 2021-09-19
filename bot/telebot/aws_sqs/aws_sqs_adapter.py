@@ -41,9 +41,13 @@ class AwsSqsAdapter:
             logger.exception("Error occured when sending message in the AWS queue: {}".format(e))
     def receiveMessages(self):
         try:
-            message_list = self.queue.receive_message()
+            message_list = self.queue.receive_messages(MaxNumberOfMessages=1)
+            if len(message_list) == 0:
+                return None
             message_body = message_list[0].body
-            self.queue.delete_message(message_list[0])
+            message_list[0].delete()
+            #self.sqs.delete_message(QueueUrl=self.queue)
+            #self.queue.delete_message(message_list[0])
             return message_body
         except Exception as e:
             logger.exception("Error occured when receiving message from the AWS queue: {}".format(e))

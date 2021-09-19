@@ -44,6 +44,7 @@ async def chat_activate(client, chat, user_id):
                 mep.set_token(token)
                 await mep.send_all_chat_messages(client, chat, 20)
                 await client.send_message(chat, "Start chat updates listening and publishing")
+                print(url)
                 await client.send_message(chat, "Here you can find your chat: " + url)
 
             elif status == DB_ERROR:

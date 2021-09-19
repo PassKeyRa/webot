@@ -15,11 +15,10 @@ class QueueHandler:
 
     def send_and_receive(self, data):
         self.sqs_out.sendMessage(data)
-        answer = ''
+        answer = self.sqs_in.receiveMessages()
         while True:
-            try:
-                answer = next(self.sqs_in.receiveMessages())
-            except Exception:
+            answer = self.sqs_in.receiveMessages()
+            if answer is None:
                 continue
             break
         return answer

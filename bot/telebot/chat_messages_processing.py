@@ -15,13 +15,18 @@ class ChatMessagesProcessing:
             sender_name = ' '.join([i for i in [sender.first_name, sender.last_name] if i])
             messages.append({'message_id': message.id, 'message_sender': sender_name, 'message_text': message.message})
             if len(messages) == buffer_size:
-                data = json.dumps({'type': 'add_messages', 'token': self.token, 'messages': messages})
+                data = json.dumps({'type': 'add_messages', 'chat_token': self.token, 'messages': messages})
 
                 # temporary
                 print('Send messages', data)
                 self.queue.send(data)
 
                 messages = []
+
+        if messages:
+            data = json.dumps({'type': 'add_messages', 'chat_token': self.token, 'messages': messages})
+            print('Send messages', data)
+            self.queue.send(data)
         return True
 
     async def send_message(self, m):
@@ -32,7 +37,7 @@ class ChatMessagesProcessing:
         sender_name = ' '.join([i for i in [sender.first_name, sender.last_name] if i])
         message_text = m.text
         message = {'message_id': message_id, 'message_sender': sender_name, 'message_text': message_text}
-        data = json.dumps({'type': 'add_messages', 'token': self.token, 'messages': [message]})
+        data = json.dumps({'type': 'add_messages', 'chat_token': self.token, 'messages': [message]})
 
         # temporary
         print('Send messages', data)
