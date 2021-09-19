@@ -9,6 +9,6 @@ if __name__ == '__main__':
         queue_thread.daemon = True
         queue_thread.start()
 
-        app.run(debug=True)
+        app.run(host='0.0.0.0', port=1337, debug=False)
     except KeyboardInterrupt:
         os._exit(0)
