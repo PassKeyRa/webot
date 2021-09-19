@@ -23,4 +23,4 @@ jobs:
         script: |
           cd ~/webot
           git pull
-          nohup python3 webot_api.py >/dev/null 2>&1
+          nohup python3 webot_api.py >/dev/null 2>&1 &
