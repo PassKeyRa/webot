@@ -1,11 +1,11 @@
-name: Run remote SSH command
+name: Deploy our project using SSH to AWS Server
 on: [push]
 jobs:
   build:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: SSH Remote Commands
+    - name: Project Deploy
       uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{ secrets.HOST }}
