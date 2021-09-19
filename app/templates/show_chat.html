@@ -5,6 +5,19 @@
     <title>webot</title>
 </head>
 <body>
-{{ chat }}
+<h1>{{ chat['chat_name'] }}</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Text</th>
+  </tr>
+    {% for m in chat['messages'] %}
+  <tr>
+    <td>{{ m['message_sender'] }}</td>
+    <td>{{ m['message_text'] }}</td>
+  </tr>
+    {% endfor %}
+</table>
 </body>
 </html>
