@@ -12,7 +12,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: kill -9 `pgrep python3`
+        script: kill -9 `pgrep python3` || true
     - name: Set up new version
       uses: appleboy/ssh-action@v0.1.4
       with:
