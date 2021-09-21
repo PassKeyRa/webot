@@ -37,16 +37,16 @@ With the help of this bot you will be able to easily access your messages in you
 
 ### Roles and responsibilities
 
-| Stakeholder's Name | Roles              | Responsibilities                         |
-| ------------------ | ------------------ | ---------------------------------------- |
-| Developer          | Backend engineer   | Telegram bot development                 |
-|                    | DevOps engineer    | Backend development                      |
-|                    | Frontend engineer  | Deployment          |                    |
-|                    | QA                 | Frontend development                     |
-|                    |                    | Requirement analysis                     |
-| Manager            | Product manager    | Create plan                              |
-|                    | Produict owner     | Determine user stories                   |
-|                    |                    | Determine business goals and objectives  |
+| Stakeholder's Name | Roles             | Responsibilities                        |
+| ------------------ | ----------------- | --------------------------------------- |
+| Developer          | Backend engineer  | Telegram bot development                |
+|                    | DevOps engineer   | Backend development                     |
+|                    | Frontend engineer | Deployment                              |
+|                    | QA                | Frontend development                    |
+|                    |                   | Requirement analysis                    |
+| Manager            | Product manager   | Create plan                             |
+|                    | Produict owner    | Determine user stories                  |
+|                    |                   | Determine business goals and objectives |
 
 ### Project Glossary
 
@@ -119,30 +119,30 @@ With the help of this bot you will be able to easily access your messages in you
 
 ### Software Development Plan
 
-| **Inception Phase**    |                         |                    |                                                                                                                                   |           |
-| ---------------------- | ----------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts |
-| 1                      | 25/08/2021 - 26/08/2021 | Manager            | Determine Business goals and objectives with valid justification, Identify the stakeholders, Establish roles and responsibilities |           |
-| 2                      | 25/08/2021 - 26/08/2021 | Developer          | Requirement engineering (20% user stories)                                                                                        |           |
-| **Elaboration Phase**  |                         |                    |                                                                                                                                   |           |
-| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts |
-| 1                      | 25/08/2021 - 26/08/2021 | Manager            | Revise User Stories (100%)                                                                                                        |           |
-| 2                      | 25/08/2021 - 26/08/2021 | Developer, Manager | Software development planning                                                                                                     |           |
-| 3                      | 25/08/2021 - 26/08/2021 | Developer          | Software Architecture, Test Plan                                                                                                  |           |
-| 4                      | 25/08/2021 - 26/08/2021 | Developer, Manager | Transition plan                                                                                                                   |           |
-| **Construction Phase** |                         |                    |                                                                                                                                   |           |
-| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts |
-| 1                      | 30/08/2021 - 12/09/2021 | Developer          | Implement Chat publication, Unit test cases                                                                                       |           |
-| 1                      | 30/08/2021 - 12/09/2021 | Developer          | Implement Web chat reading, Unit test cases                                                                                       |           |
-| 1                      | 30/08/2021 - 12/09/2021 | Developer          | Implement Access control, Unit test cases                                                                                         |           |
-| 2                      | 13/09/2021 - 26/09/2021 | Developer          | Implement Admin rights, Unit test cases                                                                                           |           |
-| 2                      | 13/09/2021 - 26/09/2021 | Developer          | Implement Chat updates, Unit test cases                                                                                           |           |
-| 3                      | 27/09/2021 - 03/10/2021 | Developer          |                                                                                                                                   |           |
-| 3                      | 27/09/2021 - 03/10/2021 | Developer          |                                                                                                                                   |           |
-| **Transition Phase**   |                         |                    |                                                                                                                                   |           |
-| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts |
-| 1                      | 25/09/2021 - 06/10/2021 | Developer          | Integration, end to end testing, training for Users and Developers                                                                | Github repository, merged branches, integration and ended to end test results, final README for developers and Users, deployed product                                                                                          |           |
-| 2                      | 01/10/2021 - 06/10/2021 | Developer, Manager | Final product release                                                                                                             |           |
+| **Inception Phase**    |                         |                    |                                                                                                                                   |                                                                                                                                        |
+| ---------------------- | ----------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts                                                                                                                              |
+| 1                      | 25/08/2021 - 26/08/2021 | Manager            | Determine Business goals and objectives with valid justification, Identify the stakeholders, Establish roles and responsibilities |                                                                                                                                        |
+| 2                      | 25/08/2021 - 26/08/2021 | Developer          | Requirement engineering (20% user stories)                                                                                        |                                                                                                                                        |
+| **Elaboration Phase**  |                         |                    |                                                                                                                                   |                                                                                                                                        |
+| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts                                                                                                                              |
+| 1                      | 25/08/2021 - 26/08/2021 | Manager            | Revise User Stories (100%)                                                                                                        |                                                                                                                                        |
+| 2                      | 25/08/2021 - 26/08/2021 | Developer, Manager | Software development planning                                                                                                     |                                                                                                                                        |
+| 3                      | 25/08/2021 - 26/08/2021 | Developer          | Software Architecture, Test Plan                                                                                                  |                                                                                                                                        |
+| 4                      | 25/08/2021 - 26/08/2021 | Developer, Manager | Transition plan                                                                                                                   |                                                                                                                                        |
+| **Construction Phase** |                         |                    |                                                                                                                                   |                                                                                                                                        |
+| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts                                                                                                                              |
+| 1                      | 30/08/2021 - 12/09/2021 | Developer          | Implement Chat publication, Unit test cases                                                                                       |                                                                                                                                        |
+| 1                      | 30/08/2021 - 12/09/2021 | Developer          | Implement Web chat reading, Unit test cases                                                                                       |                                                                                                                                        |
+| 1                      | 30/08/2021 - 12/09/2021 | Developer          | Implement Access control, Unit test cases                                                                                         |                                                                                                                                        |
+| 2                      | 13/09/2021 - 26/09/2021 | Developer          | Implement Admin rights, Unit test cases                                                                                           |                                                                                                                                        |
+| 2                      | 13/09/2021 - 26/09/2021 | Developer          | Implement Chat updates, Unit test cases                                                                                           |                                                                                                                                        |
+| 3                      | 27/09/2021 - 03/10/2021 | Developer          |                                                                                                                                   |                                                                                                                                        |
+| 3                      | 27/09/2021 - 03/10/2021 | Developer          |                                                                                                                                   |                                                                                                                                        |
+| **Transition Phase**   |                         |                    |                                                                                                                                   |                                                                                                                                        |
+| # Iteration            | Timeline                | Stakeholder        | Activities                                                                                                                        | Artifacts                                                                                                                              |
+| 1                      | 25/09/2021 - 06/10/2021 | Developer          | Integration, end to end testing, training for Users and Developers                                                                | Github repository, merged branches, integration and ended to end test results, final README for developers and Users, deployed product |
+| 2                      | 01/10/2021 - 06/10/2021 | Developer, Manager | Final product release                                                                                                             |                                                                                                                                        |
 
 ## Authors
 
