@@ -6,7 +6,21 @@ With the help of this bot you will be able to easily access your messages in you
 
 ## TOC
 
-_add TOC here later_
+* 1. [TOC](#toc)
+* 2. [Development plan](#development-plan)
+    * 2.1. [Business Goals and Objectives](#business-goals-and-objectives)
+    * 2.2. [Roles and responsibilities](#roles-and-responsibilities)
+    * 2.3. [Project Glossary](#project-glossary)
+    * 2.4. [Technical Stack](#technical-stack)
+    * 2.5. [Requirement Analysis and Specifications](#requirement-analysis-and-specifications)
+        * 2.5.1. [Features](#features)
+        * 2.5.2. [User Stories](#user-stories)
+    * 2.6. [Quality Attributes](#quality-attributes)
+    * 2.7. [Constraints](#constraints)
+    * 2.8. [Architecture](#architecture)
+    * 2.9. [Software Development Plan](#software-development-plan)
+* 3. [Authors](#authors)
+* 4. [Problem](#problem)
 
 ## Development plan
 
