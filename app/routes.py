@@ -76,4 +76,12 @@ class ShowChat(View):
         return render_template("show_chat.html", chat=chat)
 
 
+@app.route('/')
+def index_page():
+    return render_template('index.html')
+
+@app.errorhandler(404)
+def err_404():
+    return render_template('index.html')
+
 app.add_url_rule('/show_chat/<token>', view_func=ShowChat.as_view('show_chat'))

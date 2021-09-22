@@ -1,23 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>webot</title>
-</head>
-<body>
-<h1>{{ chat['chat_name'] }}</h1>
+{% extends "base.html" %}
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Text</th>
-  </tr>
-    {% for m in chat['messages'] %}
-  <tr>
-    <td>{{ m['message_sender'] }}</td>
-    <td>{{ m['message_text'] }}</td>
-  </tr>
-    {% endfor %}
-</table>
-</body>
-</html>
+{% block navtext %} Chat: {{ chat['chat_name'] }} {% endblock %}
+{% block title %} Chat: {{ chat['chat_name'] }} {% endblock %}
+
+{% block content %}
+<div id="cards">
+  {% for msg in chat['messages'][::-1] %}
+  <div class="card">
+    <div class="card-header">{{ msg['message_sender'] }}</div>
+    <div class="card-body">
+      <div class="card-text">{{ msg['message_text'] }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block head %}
+<style>
+  body>.container {
+    padding-top: 1rem;
+  }
+
+  #cards {
+    height: 85vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+  }
+
+  .card {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+</style>
+{%endblock%}
