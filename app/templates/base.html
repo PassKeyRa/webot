@@ -15,14 +15,14 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-dark sticky-top" style="background-color: #2280af;">
+	<nav class="navbar navbar-dark sticky-top p-0" style="background-color: #2280af; height: 7vh !important;">
 		<div class="container-fluid">
 			<span class="navbar-brand">
-	
+
 				<img src="{{ url_for('static', filename='icon.png') }}" alt="" height="24" class="d-inline-block">
 				WeBot
 			</span>
-	
+
 			<span class="navbar-text" style="position: absolute; left: 50%;transform: translateX(-50%); ">
 				{% block navtext %}
 				{% endblock %}

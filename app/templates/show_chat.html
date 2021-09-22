@@ -4,7 +4,7 @@
 {% block title %} Chat: {{ chat['chat_name'] }} {% endblock %}
 
 {% block content %}
-<div id="cards">
+<div id="cards" class="shadow-lg m-3 p-1 bg-body rounded">
   {% for msg in chat['messages'][::-1] %}
   <div class="card">
     <div class="card-header">{{ msg['message_sender'] }}</div>
@@ -18,12 +18,8 @@
 
 {% block head %}
 <style>
-  body>.container {
-    padding-top: 1rem;
-  }
-
   #cards {
-    height: 85vh;
+    height: 87vh;
     overflow-y: auto;
     display: flex;
     flex-direction: column-reverse;
