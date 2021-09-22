@@ -146,11 +146,11 @@ With the help of this bot you will be able to easily access your messages in you
 
 ### Milestones
 
-| Milestone | Timeline                | Status      |
-| --------- | ----------------------- | ----------- |
-| Alpha     | 31/08/2021 - 06/09/2021 | Done        |
-| Beta      | 18/09/2021 - 25/09/2021 | Done        |
-| Gamma     | 04/10/2021 - 09/10/2021 | In progress |
+| Milestone | Timeline                | Status        |
+| --------- | ----------------------- | ------------- |
+| Alpha     | 31/08/2021 - 06/09/2021 | **Done**      |
+| Beta      | 18/09/2021 - 25/09/2021 | **Done**      |
+| Gamma     | 04/10/2021 - 09/10/2021 | _In progress_ |
 
 ## Authors
 
