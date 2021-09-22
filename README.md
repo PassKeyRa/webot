@@ -40,13 +40,13 @@ With the help of this bot you will be able to easily access your messages in you
 | Stakeholder's Name | Roles             | Responsibilities                        |
 | ------------------ | ----------------- | --------------------------------------- |
 | Developer          | Backend engineer  | Telegram bot development                |
-|                    | DevOps engineer   | Backend development                     |
-|                    | Frontend engineer | Deployment                              |
-|                    | QA                | Frontend development                    |
-|                    |                   | Requirement analysis                    |
+|                    | Backend engineer  | Backend development                     |
+|                    | DevOps engineer   | Deployment                              |
+|                    | Frontend engineer | Frontend development                    |
+|                    | QA                | Requirement analysis                    |
 | Manager            | Product manager   | Create plan                             |
 |                    | Product owner     | Determine user stories                  |
-|                    |                   | Determine business goals and objectives |
+|                    | Product owner     | Determine business goals and objectives |
 
 ### Project Glossary
 
@@ -65,10 +65,12 @@ With the help of this bot you will be able to easily access your messages in you
 - [AWS SQS](https://aws.amazon.com/ru/sqs/) queue service
 - [Python](https://www.python.org/) programming language
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/) web framework
+- [Pytest](https://pytest.org/) testing library
 - [MongoDB](https://www.mongodb.com/) database
 - [Bootstrap](https://getbootstrap.com/) css framework
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language
 - [Telegram](https://telegram.org/) messaging platform for bot
+- [SonarQube](https://www.sonarqube.org/) code style and errors checker
 
 ### Requirement Analysis and Specifications
 
