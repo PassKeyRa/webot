@@ -2,7 +2,7 @@ from app import app
 from app import mongo
 from flask import render_template
 from flask.views import View
-import json, random, string
+import json, random, string, time
 from app.aws_sqs_adapter import AwsSqsAdapter
 from app.utils import *
 
@@ -11,6 +11,7 @@ class QueueHandler:
     @staticmethod
     def get_mes(sqs):
         while True:
+            time.sleep(10)
             msg = sqs.receiveMessages()
             if msg is None:
                 continue
