@@ -121,8 +121,8 @@ With the help of this bot you will be able to easily access your messages in you
 [Link to the board](https://miro.com/app/board/o9J_lzxVDsw=)
 
 ### Prototype Screenshots
-- ![1](https://i.ibb.co/YbMwy1c/screen01.png)
-- ![2](https://i.ibb.co/7CDF8ZW/screen02.png)
+![1](https://i.ibb.co/YbMwy1c/screen01.png)
+![2](https://i.ibb.co/7CDF8ZW/screen02.png)
 
 ### Software Development Plan
 
