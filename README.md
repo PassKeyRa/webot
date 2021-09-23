@@ -18,7 +18,8 @@ With the help of this bot you will be able to easily access your messages in you
   - 2.6. [Quality Attributes](#quality-attributes)
   - 2.7. [Constraints](#constraints)
   - 2.8. [Architecture](#architecture)
-  - 2.9. [Software Development Plan](#software-development-plan)
+  - 2.9. [Prototype Screenshots](#prototype-screenshots)
+  - 2.10. [Software Development Plan](#software-development-plan)
 - 3. [Authors](#authors)
 - 4. [Problem](#problem)
 
@@ -118,6 +119,10 @@ With the help of this bot you will be able to easily access your messages in you
 ### Architecture
 
 [Link to the board](https://miro.com/app/board/o9J_lzxVDsw=)
+
+### Prototype Screenshots
+- [1](https://i.ibb.co/YbMwy1c/screen01.png)
+- [2](https://i.ibb.co/7CDF8ZW/screen02.png)
 
 ### Software Development Plan
 
