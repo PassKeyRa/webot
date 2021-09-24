@@ -2,7 +2,7 @@ from app import app
 from app import mongo
 from flask import render_template
 from flask.views import View
-import json, random, string, time
+import json, random, string, time, urllib.request
 from app.aws_sqs_adapter import AwsSqsAdapter
 from app.utils import *
 
@@ -54,8 +54,8 @@ class QueueHandler:
                                                'chat_token': new_token,
                                                'messages': []})
                     QueueHandler.send_mes(json.dumps({'Status': 'OK',
-                                         'url': f'/show_chat/{new_token}',
-                                         'token': new_token}), sqs_out)
+                                                      'url': f'http://{urllib.request.urlopen("https://ident.me").read().decode("utf8")}:51212/show_chat/{new_token}',
+                                                      'token': new_token}), sqs_out)
 
                 elif request['type'] == 'add_messages':
                     for mes in request['messages']:
@@ -80,8 +80,10 @@ class ShowChat(View):
 def index_page():
     return render_template('index.html')
 
+
 @app.errorhandler(404)
 def err_404():
     return render_template('index.html')
+
 
 app.add_url_rule('/show_chat/<token>', view_func=ShowChat.as_view('show_chat'))
