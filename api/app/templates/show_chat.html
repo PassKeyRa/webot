@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block navtext %} Chat: {{ chat['chat_name'] }} {% endblock %}
+{% block title %} Chat: {{ chat['chat_name'] }} {% endblock %}
+
+{% block content %}
+<div id="cards" class="shadow-lg m-3 p-1 bg-body rounded">
+  {% for msg in chat['messages'][::-1] %}
+  <div class="card">
+    <div class="card-header">{{ msg['message_sender'] }}</div>
+    <div class="card-body">
+      <div class="card-text">{{ msg['message_text'] }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block head %}
+<style>
+  #cards {
+    height: 87vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+  }
+
+  .card {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+</style>
+{%endblock%}
