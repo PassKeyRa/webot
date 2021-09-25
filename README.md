@@ -19,7 +19,8 @@ With the help of this bot you will be able to easily access your messages in you
   - 2.7. [Constraints](#constraints)
   - 2.8. [Architecture](#architecture)
   - 2.9. [Prototype Screenshots](#prototype-screenshots)
-  - 2.10. [Software Development Plan](#software-development-plan)
+  - 2.10. [Installation and run](#instalation-and-run)
+  - 2.11. [Software Development Plan](#software-development-plan)
 - 3. [Authors](#authors)
 - 4. [Problem](#problem)
 
@@ -66,6 +67,8 @@ With the help of this bot you will be able to easily access your messages in you
 - [AWS SQS](https://aws.amazon.com/ru/sqs/) queue service
 - [Python](https://www.python.org/) programming language
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/) web framework
+- [Docker](https://docs.docker.com/desktop/) container runtime
+- [Docker-Compose](https://docs.docker.com/compose/) container orchestrator
 - [Pytest](https://pytest.org/) testing library
 - [MongoDB](https://www.mongodb.com/) database
 - [Bootstrap](https://getbootstrap.com/) css framework
@@ -121,8 +124,44 @@ With the help of this bot you will be able to easily access your messages in you
 [Link to the board](https://miro.com/app/board/o9J_lzxVDsw=)
 
 ### Prototype Screenshots
+
 ![1](https://i.ibb.co/1sMw7wT/screen01.jpg)
 ![2](https://i.ibb.co/Tbv0j0K/screen02.jpg)
+
+### Installation and run
+
+To run, pull this repository and create two `.env` files in `api/` and `bot/` directory:
+
+```bash
+api/.env
+AWS_ACCESS_KEY_ID=<>
+AWS_SECRET_ACCESS_KEY=<>
+REGION_NAME=<>
+QUEUE_NAME_IN=<>
+QUEUE_NAME_OUT=<>
+MONGODB_URL=<>
+```
+
+```bash
+bot/.env
+AWS_ACCESS_KEY_ID=<>
+AWS_SECRET_ACCESS_KEY=<>
+REGION_NAME=<>
+API_ID=<>
+API_HASH=<>
+```
+
+Then you can build Docker Images:
+
+```bash
+docker-compose build
+```
+
+And finally start instances (by default backend listen on port `51212`):
+
+```bash
+docker-compose up -d
+```
 
 ### Software Development Plan
 
