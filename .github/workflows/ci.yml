@@ -5,15 +5,17 @@ jobs:
     name: WeBot Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Kill previous running version
+    - name: Update Git repositry dir
       uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: kill -9 `pgrep python3` || true
-    - name: Set up new version
+        script: |
+          cd ~/webot
+          git pull
+    - name: Build new Docker Images and run via Docker-Compose
       uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{ secrets.HOST }}
@@ -22,6 +24,5 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd ~/webot
-          git pull
           docker-compose build
           docker-compose up -d
