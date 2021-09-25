@@ -26,9 +26,6 @@ With the help of this bot you will be able to easily access your messages in you
 
 ## Development plan
 
-**TODO: REMOVE THE LINK AFTER MIGRATION**
-<https://docs.google.com/document/d/1SMETg42oXbHJIspYPbVgaMAqGvKnp5CD/edit>
-
 ### Business Goals and Objectives
 
 - We will make paid software without ads.
