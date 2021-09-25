@@ -19,7 +19,7 @@ With the help of this bot you will be able to easily access your messages in you
   - 2.7. [Constraints](#constraints)
   - 2.8. [Architecture](#architecture)
   - 2.9. [Prototype Screenshots](#prototype-screenshots)
-  - 2.10. [Installation and run](#instalation-and-run)
+  - 2.10. [Installation and run](#installation-and-run)
   - 2.11. [Software Development Plan](#software-development-plan)
 - 3. [Authors](#authors)
 - 4. [Problem](#problem)
