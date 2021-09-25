@@ -128,6 +128,12 @@ With the help of this bot you will be able to easily access your messages in you
 ![1](https://i.ibb.co/1sMw7wT/screen01.jpg)
 ![2](https://i.ibb.co/Tbv0j0K/screen02.jpg)
 
+Link to the chat:
+
+```bash
+http://3.93.3.74:51212/show_chat/8p19keyt5p89kb66u3abj4y0zqyj9o8e
+```
+
 ### Installation and run
 
 To run, pull this repository and create two `.env` files in `api/` and `bot/` directory:
