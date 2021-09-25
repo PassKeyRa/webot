@@ -1,0 +1,9 @@
+/app/venv/
+.idea
+/bot/sqlite.db
+.env
+.pytest_cache
+__pycache__
+.envrc
+.vscode
+/bot/webot.session

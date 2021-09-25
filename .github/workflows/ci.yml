@@ -1,0 +1,28 @@
+name: Deploy our project using SSH to AWS Server
+on: [push]
+jobs:
+  kill:
+    name: WeBot Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update Git repositry dir
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd ~/webot
+          git pull
+    - name: Build new Docker Images and run via Docker-Compose
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}  
+        port: ${{ secrets.PORT }}
+        script: |
+          cd ~/webot
+          docker-compose build
+          docker-compose up -d
