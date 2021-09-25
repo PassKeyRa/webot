@@ -157,7 +157,7 @@ Then you can build Docker Images:
 docker-compose build
 ```
 
-And finally start instances (by default backend listen on port `51212`):
+And finally start instances (by default backend listen on port `51212`, but you have access to `docker-compose.yml` file):
 
 ```bash
 docker-compose up -d
