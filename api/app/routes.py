@@ -54,7 +54,7 @@ class QueueHandler:
                                                'chat_token': new_token,
                                                'messages': []})
                     QueueHandler.send_mes(json.dumps({'Status': 'OK',
-                                                      'url': f'http://{urllib.request.urlopen("https://ident.me").read().decode("utf8")}:51212/show_chat/{new_token}',
+                                                      'url': f'http://{urllib.request.urlopen("https://ident.me").read().decode("utf8")}/show_chat/{new_token}',
                                                       'token': new_token}), sqs_out)
 
                 elif request['type'] == 'add_messages':
