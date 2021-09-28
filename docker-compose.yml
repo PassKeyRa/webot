@@ -3,6 +3,6 @@ services:
   api:
     build: ./api/.
     ports:
-      - '51212:51212'
+      - '80:51212'
   bot:
     build: ./bot/.
