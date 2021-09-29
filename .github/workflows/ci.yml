@@ -1,4 +1,4 @@
-name: Deploy our project using SSH to AWS Server
+name: Deploy our project using SSH to Azure Server
 on: [push]
 jobs:
   kill:
