@@ -60,7 +60,7 @@ With the help of this bot you will be able to easily access your messages in you
 
 ### Technical Stack
 
-- [AWS EC2](https://aws.amazon.com/ru/ec2/) hosting server
+- [Azure](https://azure.microsoft.com/) hosting server
 - [AWS SQS](https://aws.amazon.com/ru/sqs/) queue service
 - [Python](https://www.python.org/) programming language
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/) web framework
