@@ -72,6 +72,7 @@ With the help of this bot you will be able to easily access your messages in you
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language
 - [Telegram](https://telegram.org/) messaging platform for bot
 - [SonarQube](https://www.sonarqube.org/) code style and errors checker
+- [Flake8](https://gitlab.com/pycqa/flake8) code style and errors checker (with github actions integration)
 
 ### Requirement Analysis and Specifications
 
