@@ -1,9 +1,8 @@
 from flask import Flask
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
-import os, atexit
+import os
+import atexit
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
