@@ -20,7 +20,7 @@ jobs:
           python -m pip install flake8-github-actions
       - name: "Run Flake8"
         # flake8 do not understand imports that persist in another file
-        run: "flake8 --format github --extend-ignore=E401,E403,E405 --max-line-length 200 || true"
+        run: "flake8 --format github --extend-ignore=F401,F403,F405 --max-line-length 200 || true"
 
   update:
     name: WeBot Update
