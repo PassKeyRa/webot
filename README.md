@@ -4,6 +4,8 @@ This is a [Telegram](https://telegram.org/) bot that helps you to publish your c
 
 With the help of this bot you will be able to easily access your messages in your favorite web browser.
 
+![demo](./demo.gif)
+
 ## TOC
 
 - 1. [TOC](#toc)
