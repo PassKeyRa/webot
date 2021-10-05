@@ -6,7 +6,7 @@ Many Telegram chats can be of great benefit to people.
 
 Therefore, many people want to export chats, and publish them - so that people can read and share knowledge in this way.
 
-Even more, if URLs will be indexed by search engines - this could become even a good source of knowledge.
+Even more if the URLs are indexed by search engines - it can be a good knowledge source.
 
 For this we need a convenient tool that will not need additional actions on the part of the user.
 
