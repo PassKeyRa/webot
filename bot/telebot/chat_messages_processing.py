@@ -13,7 +13,7 @@ class ChatMessagesProcessing:
         counter = 0
         async for message in client.iter_messages(chat, reverse=True):
             if counter >= 20000:
-                break # max number of messages
+                break  # max number of messages
             sender = await message.get_sender()
             if not sender:
                 continue

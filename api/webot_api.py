@@ -3,7 +3,6 @@ from app import app, routes
 import threading
 import os
 
-
 if __name__ == '__main__':
     try:
         queue_thread = threading.Thread(target=routes.QueueHandler.queue_handler)

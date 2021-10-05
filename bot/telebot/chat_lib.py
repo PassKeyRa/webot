@@ -6,13 +6,13 @@ from .config import *
 from .db import *
 from .queue import QueueHandler
 
-
 queue = QueueHandler()
 
 
 async def is_group_admin(client, chat, user_id):
     async for user in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
-        if type(user.participant) in [ChatParticipantAdmin, ChatParticipantCreator, ChannelParticipantCreator, ChannelParticipantAdmin] and user.id == user_id:
+        if type(user.participant) in [ChatParticipantAdmin, ChatParticipantCreator, ChannelParticipantCreator,
+                                      ChannelParticipantAdmin] and user.id == user_id:
             return True
     return False
 

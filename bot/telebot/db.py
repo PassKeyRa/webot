@@ -66,7 +66,8 @@ class DB:
 
     def chat_activation_status(self, chat_id):
         try:
-            activated = list(self.cur.execute("SELECT activated FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])[0]
+            activated = list(self.cur.execute("SELECT activated FROM chats WHERE chat_id=?", [chat_id]).fetchall()[0])[
+                0]
             if activated:
                 return DB_CHAT_ACTIVATED
             return DB_CHAT_DEACTIVATED

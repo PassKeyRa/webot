@@ -1,5 +1,6 @@
 from app.imports import *
 
+
 def loadEnv():
     try:
         load_dotenv()
