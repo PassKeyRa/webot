@@ -20,6 +20,7 @@ jobs:
           python -m pip install flake8-github-actions
       - name: "Run Flake8"
         run: "flake8 --format github"
+
   update:
     name: WeBot Update
     runs-on: ubuntu-latest
@@ -34,7 +35,8 @@ jobs:
         script: |
           cd ~/webot
           git pull
-   deploy:
+
+  deploy:
     name: WeBot Deploy
     runs-on: ubuntu-latest
     steps:
