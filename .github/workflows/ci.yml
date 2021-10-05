@@ -1,8 +1,27 @@
-name: Deploy our project using SSH to Azure Server
+name: Check and deploy our project using SSH to Azure Server
 on: [push]
 jobs:
-  kill:
-    name: WeBot Deploy
+  style:
+    name: WeBot Code Style
+    runs-on: "ubuntu-18.04"
+    steps:
+      - name: Checkout
+        uses: "actions/checkout@v2"
+      - name: Setup Python
+        uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          python -VV
+          python -m site
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install flake8
+          python -m pip install flake8-github-actions
+      - name: "Run Flake8"
+        run: "flake8 --format github"
+  update:
+    name: WeBot Update
     runs-on: ubuntu-latest
     steps:
     - name: Update Git repositry dir
@@ -15,6 +34,10 @@ jobs:
         script: |
           cd ~/webot
           git pull
+   deploy:
+    name: WeBot Deploy
+    runs-on: ubuntu-latest
+    steps:
     - name: Build new Docker Images and run via Docker-Compose
       uses: appleboy/ssh-action@v0.1.4
       with:
