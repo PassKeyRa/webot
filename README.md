@@ -8,7 +8,7 @@ For this we need a convenient tool that will not need additional actions on the 
 
 ![demo](./demo.gif)
 
-## Table of contents
+## Table of content
 
 - 1. [Table of content](#table-of-content)
 - 2. [Installation and run](#installation-and-run)
