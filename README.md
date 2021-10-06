@@ -162,22 +162,22 @@ docker-compose up -d
 
 On [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
 
-Our UML use case diagram:
+#### Our UML use case diagram:
 ![uml](https://i.ibb.co/1m3JYwd/uml.jpg)
 
-Class diagram:
+#### Class diagram:
 ![class](https://i.ibb.co/NCnNmX2/class.jpg)
 
-Static and Dynamic view:
+#### Static and Dynamic view:
 ![static](https://i.ibb.co/GVYWyCG/static.jpg)
 
-Allocation view:
+#### Allocation view:
 ![allocation](https://i.ibb.co/9TzqMX0/allocation.jpg)
 
-Sequence (part 1):
+#### Sequence (part 1):
 ![sequence_part_1](https://i.ibb.co/tq5LxK8/sequence-1.jpg)
 
-Sequence (part 2):
+#### Sequence (part 2):
 ![sequence_part_2](https://i.ibb.co/NpC7pHw/sequence-2.jpg)
 
 ### Software Development Plan
