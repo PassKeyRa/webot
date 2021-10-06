@@ -1,37 +1,99 @@
 # WeBot
 
 This is a [Telegram](https://telegram.org/) bot that helps you to publish your chats in the web.
-
 Many Telegram chats can be of great benefit to people.
-
 Therefore, many people want to export chats, and publish them - so that people can read and share knowledge in this way.
-
 Even more if the URLs are indexed by search engines - it can be a good knowledge source.
-
 For this we need a convenient tool that will not need additional actions on the part of the user.
 
 ![demo](./demo.gif)
 
 ## TOC
 
-- 1. [TOC](#toc)
-- 2. [Development plan](#development-plan)
-  - 2.1. [Business Goals and Objectives](#business-goals-and-objectives)
-  - 2.2. [Roles and responsibilities](#roles-and-responsibilities)
-  - 2.3. [Project Glossary](#project-glossary)
-  - 2.4. [Technical Stack](#technical-stack)
-  - 2.5. [Requirement Analysis and Specifications](#requirement-analysis-and-specifications)
-    - 2.5.1. [Features](#features)
-    - 2.5.2. [User Stories](#user-stories)
-  - 2.6. [Quality Attributes](#quality-attributes)
-  - 2.7. [Constraints](#constraints)
-  - 2.8. [Architecture](#architecture)
-  - 2.9. [Prototype Screenshots](#prototype-screenshots)
-  - 2.10. [Installation and run](#installation-and-run)
-  - 2.11. [Software Development Plan](#software-development-plan)
-- 3. [Authors](#authors)
+- 1. [Table of content](#table-of-content)
+- 2. [Installation and run](#installation-and-run)
+- 3. [Development plan](#development-plan)
+  - 3.1. [Prototype Screenshots](#prototype-screenshots)
+  - 3.2. [Requirement Analysis and Specifications](#requirement-analysis-and-specifications)
+    - 3.2.1. [Features](#features)
+    - 3.2.2. [User Stories](#user-stories)
+  - 3.3. [Business Goals and Objectives](#business-goals-and-objectives)
+  - 3.4. [Roles and responsibilities](#roles-and-responsibilities)
+  - 3.5. [Project Glossary](#project-glossary)
+  - 3.6. [Technical Stack](#technical-stack)
+  - 3.7. [Quality Attributes](#quality-attributes)
+  - 3.8. [Constraints](#constraints)
+  - 3.9. [Architecture](#architecture)
+  - 3.10. [Software Development Plan](#software-development-plan)
+- 4. [Authors](#authors)
+
+## Installation and run
+
+To run, pull this repository and create two `.env` files in `api/` and `bot/` directory:
+
+```bash
+api/.env
+AWS_ACCESS_KEY_ID=<>
+AWS_SECRET_ACCESS_KEY=<>
+REGION_NAME=<>
+QUEUE_NAME_IN=<>
+QUEUE_NAME_OUT=<>
+MONGODB_URL=<>
+```
+
+```bash
+bot/.env
+AWS_ACCESS_KEY_ID=<>
+AWS_SECRET_ACCESS_KEY=<>
+REGION_NAME=<>
+API_ID=<>
+API_HASH=<>
+```
+
+Then you can build Docker Images:
+
+```bash
+docker-compose build
+```
+
+And finally start instances (by default backend listen on port `51212`, but you have access to `docker-compose.yml` file):
+
+```bash
+docker-compose up -d
+```
 
 ## Development plan
+
+### Prototype Screenshots
+
+![1](https://i.ibb.co/1sMw7wT/screen01.jpg)
+![2](https://i.ibb.co/Tbv0j0K/screen02.jpg)
+
+### Requirement Analysis and Specifications
+
+#### Features
+
+| ID  | User Story Title  | Priority |
+| --- | ----------------- | -------- |
+| 1   | Chat publication  | Must     |
+| 2   | Web chat reading  | Must     |
+| 3   | Access control    | Normal   |
+| 4   | Admin rights      | Normal   |
+| 5   | Chat updates      | Low      |
+| 6   | Media processing  | Low      |
+| 7   | Publishing rights | Low      |
+
+#### User Stories
+
+| Status        | User Type    | User Story Title  | User Stories                                                                               |
+| ------------- | ------------ | ----------------- | ------------------------------------------------------------------------------------------ |
+| **Done**      | Chat Admin   | Chat publication  | As a chat admin I want to publish my chat in the internet with telegram bot                |
+| **Done**      |              | Access control    | As a chat admin I want to be the only want who can publish the chat                        |
+| `TODO`        |              | Admin rights      | As a chat admin I want to be able to revoke access to chat in web                          |
+| `TODO`        | Chat User    | Chat updates      | As a user I want the chat to update automatically                                          |
+| `TODO`        |              | Media processing  | As a user I want to see not only text messages but also assets such as videos and pictures |
+| _In progress_ |              | Web chat reading  | As a user I want to read chat messages from published chat in web browser                  |
+| `TODO`        | Legal Lawyer | Publishing rights | As a copywriter I want to be able to complain about the materials in published chats       |
 
 ### Business Goals and Objectives
 
@@ -81,32 +143,6 @@ For this we need a convenient tool that will not need additional actions on the 
 - [SonarQube](https://www.sonarqube.org/) code style and errors checker
 - [Flake8](https://gitlab.com/pycqa/flake8) code style and errors checker (with github actions integration)
 
-### Requirement Analysis and Specifications
-
-#### Features
-
-| ID  | User Story Title  | Priority |
-| --- | ----------------- | -------- |
-| 1   | Chat publication  | Must     |
-| 2   | Web chat reading  | Must     |
-| 3   | Access control    | Normal   |
-| 4   | Admin rights      | Normal   |
-| 5   | Chat updates      | Low      |
-| 6   | Media processing  | Low      |
-| 7   | Publishing rights | Low      |
-
-#### User Stories
-
-| Status        | User Type    | User Story Title  | User Stories                                                                               |
-| ------------- | ------------ | ----------------- | ------------------------------------------------------------------------------------------ |
-| **Done**      | Chat Admin   | Chat publication  | As a chat admin I want to publish my chat in the internet with telegram bot                |
-| **Done**      |              | Access control    | As a chat admin I want to be the only want who can publish the chat                        |
-| `TODO`        |              | Admin rights      | As a chat admin I want to be able to revoke access to chat in web                          |
-| `TODO`        | Chat User    | Chat updates      | As a user I want the chat to update automatically                                          |
-| `TODO`        |              | Media processing  | As a user I want to see not only text messages but also assets such as videos and pictures |
-| _In progress_ |              | Web chat reading  | As a user I want to read chat messages from published chat in web browser                  |
-| `TODO`        | Legal Lawyer | Publishing rights | As a copywriter I want to be able to complain about the materials in published chats       |
-
 ### Quality Attributes
 
 | Characteristics        | Sub-Characteristics Definition | How we will achieve it                                                                                                                  |
@@ -126,47 +162,16 @@ For this we need a convenient tool that will not need additional actions on the 
 
 ### Architecture
 
-[Link to the board](https://miro.com/app/board/o9J_lzxVDsw=)
+By [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
 
-### Prototype Screenshots
+Our UML use case diagram:
+![uml](https://i.ibb.co/1m3JYwd/uml.jpg)
 
-![1](https://i.ibb.co/1sMw7wT/screen01.jpg)
-![2](https://i.ibb.co/Tbv0j0K/screen02.jpg)
+Static and Dynamic view:
+![static](https://i.ibb.co/GVYWyCG/static.jpg)
 
-### Installation and run
-
-To run, pull this repository and create two `.env` files in `api/` and `bot/` directory:
-
-```bash
-api/.env
-AWS_ACCESS_KEY_ID=<>
-AWS_SECRET_ACCESS_KEY=<>
-REGION_NAME=<>
-QUEUE_NAME_IN=<>
-QUEUE_NAME_OUT=<>
-MONGODB_URL=<>
-```
-
-```bash
-bot/.env
-AWS_ACCESS_KEY_ID=<>
-AWS_SECRET_ACCESS_KEY=<>
-REGION_NAME=<>
-API_ID=<>
-API_HASH=<>
-```
-
-Then you can build Docker Images:
-
-```bash
-docker-compose build
-```
-
-And finally start instances (by default backend listen on port `51212`, but you have access to `docker-compose.yml` file):
-
-```bash
-docker-compose up -d
-```
+Allocation view:
+![allocation](https://i.ibb.co/9TzqMX0/allocation.jpg)
 
 ### Software Development Plan
 
