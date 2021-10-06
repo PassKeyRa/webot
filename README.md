@@ -24,6 +24,12 @@ For this we need a convenient tool that will not need additional actions on the 
   - 3.7. [Quality Attributes](#quality-attributes)
   - 3.8. [Constraints](#constraints)
   - 3.9. [Architecture](#architecture)
+    - 3.9.1. [UML use case diagram](#uml-use-case-diagram)
+    - 3.9.2. [Class diagram](#class-diagram)
+    - 3.9.3. [Static and Dynamic view](#static-and-dynamic-view)
+    - 3.9.4. [Allocation view](#allocation-view)
+    - 3.9.5. [Sequence 1](#sequence-1)
+    - 3.9.6. [Sequence 2](#sequence-2)
   - 3.10. [Software Development Plan](#software-development-plan)
 - 4. [Authors](#authors)
 
@@ -162,22 +168,22 @@ docker-compose up -d
 
 On [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
 
-#### Our UML use case diagram:
+#### UML use case diagram
 ![uml](https://i.ibb.co/1m3JYwd/uml.jpg)
 
-#### Class diagram:
+#### Class diagram
 ![class](https://i.ibb.co/NCnNmX2/class.jpg)
 
-#### Static and Dynamic view:
+#### Static and Dynamic view
 ![static](https://i.ibb.co/GVYWyCG/static.jpg)
 
-#### Allocation view:
+#### Allocation view
 ![allocation](https://i.ibb.co/9TzqMX0/allocation.jpg)
 
-#### Sequence (part 1):
+#### Sequence 1
 ![sequence_part_1](https://i.ibb.co/tq5LxK8/sequence-1.jpg)
 
-#### Sequence (part 2):
+#### Sequence 2
 ![sequence_part_2](https://i.ibb.co/NpC7pHw/sequence-2.jpg)
 
 ### Software Development Plan
