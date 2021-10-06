@@ -22,6 +22,27 @@ jobs:
         # flake8 do not understand imports that persist in another file
         run: "flake8 --format github --extend-ignore=F401,F403,F405 --max-line-length 200 || true"
 
+  tests:
+    name: WeBot Tests
+    runs-on: "ubuntu-18.04"
+    steps:
+      - name: Checkout
+        uses: "actions/checkout@v2"
+      - name: Setup Python
+        uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          python -VV
+          python -m site
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r api/requirements.txt
+          python -m pip install -r bot/requirements.txt
+      - name: "Run Pytest"
+        run: "python -m pytest -p no:warnings api/app/aws_sqs_adapter.py
+      
+
   update:
     name: WeBot Update
     runs-on: ubuntu-latest
