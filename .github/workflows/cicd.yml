@@ -40,8 +40,6 @@ jobs:
           python -m pip install pytest
           python -m pip install -r api/requirements.txt
           python -m pip install -r bot/requirements.txt
-      - name: "Run Pytest"
-        run: "pass"
       
 
   update:
