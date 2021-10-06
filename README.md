@@ -13,14 +13,14 @@ For this we need a convenient tool that will not need additional actions on the 
 - 1. [Table of content](#table-of-content)
 - 2. [Installation and run](#installation-and-run)
 - 3. [Development plan](#development-plan)
-  - 3.1. [Prototype Screenshots](#prototype-screenshots)
-  - 3.2. [Requirement Analysis and Specifications](#requirement-analysis-and-specifications)
-    - 3.2.1. [Features](#features)
-    - 3.2.2. [User Stories](#user-stories)
-  - 3.3. [Business Goals and Objectives](#business-goals-and-objectives)
-  - 3.4. [Roles and responsibilities](#roles-and-responsibilities)
-  - 3.5. [Project Glossary](#project-glossary)
-  - 3.6. [Technical Stack](#technical-stack)
+  - 3.1. [Technical Stack](#technical-stack)
+  - 3.2. [Prototype Screenshots](#prototype-screenshots)
+  - 3.3. [Requirement Analysis and Specifications](#requirement-analysis-and-specifications)
+    - 3.3.1. [Features](#features)
+    - 3.3.2. [User Stories](#user-stories)
+  - 3.4. [Business Goals and Objectives](#business-goals-and-objectives)
+  - 3.5. [Roles and responsibilities](#roles-and-responsibilities)
+  - 3.6. [Project Glossary](#project-glossary)
   - 3.7. [Quality Attributes](#quality-attributes)
   - 3.8. [Constraints](#constraints)
   - 3.9. [Architecture](#architecture)
@@ -63,6 +63,22 @@ docker-compose up -d
 ```
 
 ## Development plan
+
+### Technical Stack
+
+- [Azure](https://azure.microsoft.com/) hosting server
+- [AWS SQS](https://aws.amazon.com/ru/sqs/) queue service
+- [Python](https://www.python.org/) programming language
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/) web framework
+- [Docker](https://docs.docker.com/desktop/) container runtime
+- [Docker-Compose](https://docs.docker.com/compose/) container orchestrator
+- [Pytest](https://pytest.org/) testing library
+- [MongoDB](https://www.mongodb.com/) database
+- [Bootstrap](https://getbootstrap.com/) css framework
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language
+- [Telegram](https://telegram.org/) messaging platform for bot
+- [SonarQube](https://www.sonarqube.org/) code style and errors checker
+- [Flake8](https://gitlab.com/pycqa/flake8) code style and errors checker (with github actions integration)
 
 ### Prototype Screenshots
 
@@ -126,22 +142,6 @@ docker-compose up -d
 - QA - quality assurance of code and infrastructure
 - Chat update - receiving a new message and adding it to the database
 - Bot - an automated tool that is added to the telegram chat and publishes a link to the web interface with messages from the chat
-
-### Technical Stack
-
-- [Azure](https://azure.microsoft.com/) hosting server
-- [AWS SQS](https://aws.amazon.com/ru/sqs/) queue service
-- [Python](https://www.python.org/) programming language
-- [Flask](https://flask.palletsprojects.com/en/2.0.x/) web framework
-- [Docker](https://docs.docker.com/desktop/) container runtime
-- [Docker-Compose](https://docs.docker.com/compose/) container orchestrator
-- [Pytest](https://pytest.org/) testing library
-- [MongoDB](https://www.mongodb.com/) database
-- [Bootstrap](https://getbootstrap.com/) css framework
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) programming language
-- [Telegram](https://telegram.org/) messaging platform for bot
-- [SonarQube](https://www.sonarqube.org/) code style and errors checker
-- [Flake8](https://gitlab.com/pycqa/flake8) code style and errors checker (with github actions integration)
 
 ### Quality Attributes
 
