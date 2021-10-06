@@ -8,7 +8,7 @@ For this we need a convenient tool that will not need additional actions on the 
 
 ![demo](./demo.gif)
 
-## TOC
+## Table of contents
 
 - 1. [Table of content](#table-of-content)
 - 2. [Installation and run](#installation-and-run)
@@ -148,8 +148,8 @@ docker-compose up -d
 | Characteristics        | Sub-Characteristics Definition | How we will achieve it                                                                                                                  |
 | ---------------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Usability              | User interface aesthetics      | Client will use Telegram app user interface to communicate with our bot                                                                 |
-| Reliability            | Recoverability                 | Bot should be able to recover in case of crash or failure automatically (automatic restart)                                             |
-| Reliability            | Fault tolerance                | At least some nodes of bot should be available at any time (replication)                                                                |
+| Reliability            | Recoverability                 | Bot should be able to recover in case of crash or failure automatically (docker-compose restart:always)                                 |
+| Reliability            | Fault tolerance                | At least some nodes of bot should be available at any time (replication) (Azure servers)                                                |
 | Security               | Confidentiality                | The published chat history is available for viewing by users who followed the link                                                      |
 | Performance Efficiency | Time-behavior                  | Maximum load time should not be bigger than 5 s. To achieve this we need to test load speeds of the app and optimize the code if needed |
 
