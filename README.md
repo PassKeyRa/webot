@@ -174,6 +174,12 @@ Static and Dynamic view:
 Allocation view:
 ![allocation](https://i.ibb.co/9TzqMX0/allocation.jpg)
 
+Sequence (part 1):
+![sequence_part_1](https://i.ibb.co/tq5LxK8/sequence-1.jpg)
+
+Sequence (part 2):
+![sequence_part_2](https://i.ibb.co/NpC7pHw/sequence-2.jpg)
+
 ### Software Development Plan
 
 | Status   | **Inception Phase**    |                         |                    |                                                                                                                                   |                                                                                                               |
