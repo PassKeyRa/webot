@@ -26,10 +26,11 @@ For this we need a convenient tool that will not need additional actions on the 
   - 3.9. [Architecture](#architecture)
     - 3.9.1. [UML use case diagram](#uml-use-case-diagram)
     - 3.9.2. [Class diagram](#class-diagram)
-    - 3.9.3. [Static and Dynamic view](#static-and-dynamic-view)
-    - 3.9.4. [Allocation view](#allocation-view)
-    - 3.9.5. [Sequence 1](#sequence-1)
-    - 3.9.6. [Sequence 2](#sequence-2)
+    - 3.9.3. [Static view](#static-view)
+    - 3.9.4. [Dynamic view](#dynamic-view)
+    - 3.9.5. [Allocation view](#allocation-view)
+    - 3.9.6. [Sequence 1](#sequence-1)
+    - 3.9.7. [Sequence 2](#sequence-2)
   - 3.10. [Software Development Plan](#software-development-plan)
 - 4. [Authors](#authors)
 
@@ -174,8 +175,11 @@ On [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
 #### Class diagram
 ![class](https://i.ibb.co/NCnNmX2/class.jpg)
 
-#### Static and Dynamic view
-![static](https://i.ibb.co/GVYWyCG/static.jpg)
+#### Static view
+![static](https://i.ibb.co/8KgnZT9/static.jpg)
+
+#### Dynamic view
+![dynamic](https://i.ibb.co/s9fLMyX/dynamic.jpg)
 
 #### Allocation view
 ![allocation](https://i.ibb.co/9TzqMX0/allocation.jpg)
