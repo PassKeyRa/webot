@@ -162,7 +162,7 @@ docker-compose up -d
 
 ### Architecture
 
-By [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
+On [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
 
 Our UML use case diagram:
 ![uml](https://i.ibb.co/1m3JYwd/uml.jpg)
