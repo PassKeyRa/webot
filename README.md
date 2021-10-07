@@ -31,7 +31,7 @@ For this we need a convenient tool that will not need additional actions on the 
     - 3.9.5. [Allocation view](#allocation-view)
     - 3.9.6. [Sequence 1](#sequence-1)
     - 3.9.7. [Sequence 2](#sequence-2)
-  - 3.10. [Code style and Tests](#code-style-and-test)
+  - 3.10. [Code style and Tests](#code-style-and-tests)
   - 3.11. [Software Development Plan](#software-development-plan)
 - 4. [Authors](#authors)
 
