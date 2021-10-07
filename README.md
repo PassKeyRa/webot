@@ -31,7 +31,8 @@ For this we need a convenient tool that will not need additional actions on the 
     - 3.9.5. [Allocation view](#allocation-view)
     - 3.9.6. [Sequence 1](#sequence-1)
     - 3.9.7. [Sequence 2](#sequence-2)
-  - 3.10. [Software Development Plan](#software-development-plan)
+  - 3.10. [Code style and Tests](#code-style-and-test)
+  - 3.11. [Software Development Plan](#software-development-plan)
 - 4. [Authors](#authors)
 
 ## Installation and run
@@ -189,6 +190,17 @@ On [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
 
 #### Sequence 2
 ![sequence_part_2](https://i.ibb.co/NpC7pHw/sequence-2.jpg)
+
+### Code style and Tests
+
+We have automatic error and code style checker `flake8`.
+And integration tests performed locally (with `AWS` and `Telegram API` credentials) with `pytest`.
+
+Code style checked by `flake8`:
+![flake8](https://i.ibb.co/yfBMMSf/flake8.jpg)
+
+Test performed on server with correct `.env` file by `pytest`:
+![pytest](https://i.ibb.co/Wg2Bgtb/pytest.jpg)
 
 ### Software Development Plan
 
