@@ -13,6 +13,6 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = os.environ.get('MONGODB_URL')
 mongo = PyMongo(app)
 
-from app import routes
+from app import QueueHandler, routes
 
-atexit.register(routes.QueueHandler.delete_queues)
+atexit.register(QueueHandler.QueueHandler.delete_queues)

@@ -1,11 +1,11 @@
-from app import app, routes
+from app import app, QueueHandler
 
 import threading
 import os
 
 if __name__ == '__main__':
     try:
-        queue_thread = threading.Thread(target=routes.QueueHandler.queue_handler)
+        queue_thread = threading.Thread(target=QueueHandler.QueueHandler.queue_handler)
         queue_thread.daemon = True
         queue_thread.start()
 
