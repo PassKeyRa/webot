@@ -82,7 +82,7 @@ def index_page():
 
 
 @app.errorhandler(404)
-def err_404():
+def err_404(_):
     return render_template('index.html')
 
 
