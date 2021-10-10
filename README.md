@@ -31,8 +31,9 @@ For this we need a convenient tool that will not need additional actions on the 
     - 3.9.5. [Allocation view](#allocation-view)
     - 3.9.6. [Sequence 1](#sequence-1)
     - 3.9.7. [Sequence 2](#sequence-2)
-  - 3.10. [Code style and Tests](#code-style-and-tests)
-  - 3.11. [Software Development Plan](#software-development-plan)
+  - 3.10. [Code style](#code-style)
+  - 3.11. [Tests](#tests)
+  - 3.12. [Software Development Plan](#software-development-plan)
 - 4. [Authors](#authors)
 
 ## Installation and run
@@ -191,7 +192,7 @@ On [this](https://miro.com/app/board/o9J_lzxVDsw=) link you can find:
 #### Sequence 2
 ![sequence_part_2](https://i.ibb.co/NpC7pHw/sequence-2.jpg)
 
-### Code style and Tests
+### Code style
 
 We have automatic error and code style checker `flake8`.
 And integration tests performed locally (with `AWS` and `Telegram API` credentials) with `pytest`.
@@ -202,7 +203,7 @@ Code style checked by `flake8`:
 Test performed on server with correct `.env` file by `pytest`:
 ![pytest](https://i.ibb.co/Wg2Bgtb/pytest.jpg)
 
-#### Tests
+### Tests
 
 After reading the post [The TDD That Works for Me](https://www.yegor256.com/2017/03/24/tdd-that-works.html) we believe that we do not need to write the test unless something is broken and reported. So far we haven't found anything that breaks our app so we haven't wrote the tests.
 
