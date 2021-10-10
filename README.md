@@ -202,6 +202,10 @@ Code style checked by `flake8`:
 Test performed on server with correct `.env` file by `pytest`:
 ![pytest](https://i.ibb.co/Wg2Bgtb/pytest.jpg)
 
+#### Tests
+
+After reading the post [The TDD That Works for Me](https://www.yegor256.com/2017/03/24/tdd-that-works.html) we believe that we do not need to write the test unless something is broken and reported. So far we haven't found anything that breaks our app so we haven't wrote the tests.
+
 ### Software Development Plan
 
 | Status   | **Inception Phase**    |                         |                    |                                                                                                                                   |                                                                                                               |
