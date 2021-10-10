@@ -4,5 +4,8 @@ services:
     build: ./api/.
     ports:
       - '80:80'
+    restart: always
+
   bot:
     build: ./bot/.
+    restart: always
