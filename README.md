@@ -1,5 +1,7 @@
 # WeBot
 
+__SSAD course project__
+
 This is a Telegram bot that helps you to publish your chats in the web.
 Many Telegram chats can be of great benefit to people.
 Therefore, many people want to export chats, and publish them - so that people can read and share knowledge in this way.
